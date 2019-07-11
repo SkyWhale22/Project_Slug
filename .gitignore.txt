@@ -1,0 +1,5 @@
+.x64/
+.Project_Slug/Project_Slug.pcxproj
+.Project_Slug/Project_Slug.vcxproj.filters
+.Project_Slug/Project_Slug.vcxproj.user
+.Project_Slug/x64
