@@ -1,0 +1,45 @@
+﻿  Application.cpp
+C:\Users\skywh\source\repos\Project_Slug\Project_Slug\Includes\Core\Application.h(18,14): error C2143:  syntax error: missing ';' before '*'
+C:\Users\skywh\source\repos\Project_Slug\Project_Slug\Includes\Core\Application.h(18,14): error C4430:  missing type specifier - int assumed. Note: C++ does not support default-int
+C:\Users\skywh\source\repos\Project_Slug\Project_Slug\Includes\Core\Application.h(18,25): error C2238:  unexpected token(s) preceding ';'
+C:\Users\skywh\source\repos\Project_Slug\Project_Slug\Includes\Core\Application.h(19,16): error C2143:  syntax error: missing ';' before '*'
+C:\Users\skywh\source\repos\Project_Slug\Project_Slug\Includes\Core\Application.h(19,16): error C4430:  missing type specifier - int assumed. Note: C++ does not support default-int
+C:\Users\skywh\source\repos\Project_Slug\Project_Slug\Includes\Core\Application.h(19,29): error C2238:  unexpected token(s) preceding ';'
+C:\Users\skywh\source\repos\Project_Slug\Project_Slug\Includes\Core\Application.h(21,25): error C3646:  'm_frameCounter': unknown override specifier
+C:\Users\skywh\source\repos\Project_Slug\Project_Slug\Includes\Core\Application.h(21,25): error C4430:  missing type specifier - int assumed. Note: C++ does not support default-int
+C:\Users\skywh\source\repos\Project_Slug\Project_Slug\Includes\Core\Application.h(22,29): error C3646:  'm_lastFrameCounter': unknown override specifier
+C:\Users\skywh\source\repos\Project_Slug\Project_Slug\Includes\Core\Application.h(22,29): error C4430:  missing type specifier - int assumed. Note: C++ does not support default-int
+C:\Users\skywh\source\repos\Project_Slug\Project_Slug\Sources\Core\Application.cpp(12,4): error C2084:  function 'Slug::Core::Application::Application(void)' already has a body
+C:\Users\skywh\source\repos\Project_Slug\Project_Slug\Includes\Core\Application.h(30): message :  see previous definition of '{ctor}'
+C:\Users\skywh\source\repos\Project_Slug\Project_Slug\Sources\Core\Application.cpp(21,4): error C2065:  'm_pWindow': undeclared identifier
+C:\Users\skywh\source\repos\Project_Slug\Project_Slug\Sources\Core\Application.cpp(22,4): error C2065:  'm_pWindow': undeclared identifier
+C:\Users\skywh\source\repos\Project_Slug\Project_Slug\Sources\Core\Application.cpp(24,4): error C2065:  'm_pRenderer': undeclared identifier
+C:\Users\skywh\source\repos\Project_Slug\Project_Slug\Sources\Core\Application.cpp(24,37): error C2065:  'm_pWindow': undeclared identifier
+C:\Users\skywh\source\repos\Project_Slug\Project_Slug\Sources\Core\Application.cpp(26,4): error C2065:  'm_pRenderer': undeclared identifier
+C:\Users\skywh\source\repos\Project_Slug\Project_Slug\Sources\Core\Application.cpp(41,31): error C2065:  'm_pRenderer': undeclared identifier
+C:\Users\skywh\source\repos\Project_Slug\Project_Slug\Sources\Core\Application.cpp(47,19): error C2065:  'm_pWindow': undeclared identifier
+C:\Users\skywh\source\repos\Project_Slug\Project_Slug\Sources\Core\Application.cpp(47,32): error C2065:  'm_pRenderer': undeclared identifier
+C:\Users\skywh\source\repos\Project_Slug\Project_Slug\Sources\Core\Application.cpp(50,4): error C2065:  'm_frameCounter': undeclared identifier
+C:\Users\skywh\source\repos\Project_Slug\Project_Slug\Sources\Core\Application.cpp(51,4): error C2065:  'm_lastFrameCounter': undeclared identifier
+C:\Users\skywh\source\repos\Project_Slug\Project_Slug\Sources\Core\Application.cpp(62,11): error C2065:  'm_pRenderer': undeclared identifier
+C:\Users\skywh\source\repos\Project_Slug\Project_Slug\Sources\Core\Application.cpp(62,22): error C2541:  'delete': cannot delete objects that are not pointers
+C:\Users\skywh\source\repos\Project_Slug\Project_Slug\Sources\Core\Application.cpp(63,4): error C2065:  'm_pRenderer': undeclared identifier
+C:\Users\skywh\source\repos\Project_Slug\Project_Slug\Sources\Core\Application.cpp(65,11): error C2065:  'm_pWindow': undeclared identifier
+C:\Users\skywh\source\repos\Project_Slug\Project_Slug\Sources\Core\Application.cpp(65,20): error C2541:  'delete': cannot delete objects that are not pointers
+  MouseManager.cpp
+C:\Users\skywh\source\repos\Project_Slug\Project_Slug\Sources\Core\Application.cpp(66,4): error C2065:  'm_pWindow': undeclared identifier
+C:\Program Files (x86)\Microsoft Visual Studio\2019\Community\VC\Tools\MSVC\14.21.27702\include\memory(1536,1): error C2248:  'Slug::Managers::MouseManager::~MouseManager': cannot access private member declared in class 'Slug::Managers::MouseManager'
+C:\Users\skywh\source\repos\Project_Slug\Project_Slug\Includes\Managers\MouseManager.h(32): message :  compiler has generated 'Slug::Managers::MouseManager::~MouseManager' here
+C:\Users\skywh\source\repos\Project_Slug\Project_Slug\Includes\Managers\MouseManager.h(9): message :  see declaration of 'Slug::Managers::MouseManager'
+C:\Program Files (x86)\Microsoft Visual Studio\2019\Community\VC\Tools\MSVC\14.21.27702\include\memory(1535): message :  while compiling class template member function 'void std::_Ref_count_obj<_Ty>::_Destroy(void) noexcept'
+C:\Program Files (x86)\Microsoft Visual Studio\2019\Community\VC\Tools\MSVC\14.21.27702\include\memory(1535): message :         with
+C:\Program Files (x86)\Microsoft Visual Studio\2019\Community\VC\Tools\MSVC\14.21.27702\include\memory(1535): message :         [
+C:\Program Files (x86)\Microsoft Visual Studio\2019\Community\VC\Tools\MSVC\14.21.27702\include\memory(1535): message :             _Ty=Slug::Managers::MouseManager
+C:\Program Files (x86)\Microsoft Visual Studio\2019\Community\VC\Tools\MSVC\14.21.27702\include\memory(1535): message :         ]
+C:\Program Files (x86)\Microsoft Visual Studio\2019\Community\VC\Tools\MSVC\14.21.27702\include\memory(1581): message :  see reference to class template instantiation 'std::_Ref_count_obj<_Ty>' being compiled
+C:\Program Files (x86)\Microsoft Visual Studio\2019\Community\VC\Tools\MSVC\14.21.27702\include\memory(1581): message :         with
+C:\Program Files (x86)\Microsoft Visual Studio\2019\Community\VC\Tools\MSVC\14.21.27702\include\memory(1581): message :         [
+C:\Program Files (x86)\Microsoft Visual Studio\2019\Community\VC\Tools\MSVC\14.21.27702\include\memory(1581): message :             _Ty=Slug::Managers::MouseManager
+C:\Program Files (x86)\Microsoft Visual Studio\2019\Community\VC\Tools\MSVC\14.21.27702\include\memory(1581): message :         ]
+  Generating Code...
+C:\Users\skywh\source\repos\Project_Slug\Project_Slug\Sources\Core\Managers\MouseManager.cpp(21): message :  see reference to function template instantiation 'std::shared_ptr<Slug::Managers::MouseManager> std::make_shared<Slug::Managers::MouseManager,>(void)' being compiled
