@@ -25,6 +25,27 @@
     <Filter Include="Header Files\Managers">
       <UniqueIdentifier>{eabd56c6-b433-46b2-8ef1-9588fe9a3d1d}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Header Files\GameStates">
+      <UniqueIdentifier>{d3b0f7a3-701b-4864-8755-444c3990a88e}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\GameStates">
+      <UniqueIdentifier>{50e729a2-68fe-4830-9bf7-26d3bcf95074}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\Managers">
+      <UniqueIdentifier>{1e1c6e45-acf6-433a-a4cd-8ff9e0933a19}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\UI">
+      <UniqueIdentifier>{8400f362-d69f-4201-8dfa-8c447c7e3c3a}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\UI">
+      <UniqueIdentifier>{50a40a10-0e1e-43a7-9b79-86d85e75a20e}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\GameObjects">
+      <UniqueIdentifier>{339c0b05-e8f3-4730-93b7-e2c2e7a377ab}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\GameObjects">
+      <UniqueIdentifier>{83d4f10b-d28a-45a0-94b6-0c4a7e7820fe}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Sources\Core\Application.cpp">
@@ -33,19 +54,64 @@
     <ClCompile Include="Sources\Core\Main.cpp">
       <Filter>Source Files\Core</Filter>
     </ClCompile>
-    <ClCompile Include="Sources\Core\Managers\MouseManager.cpp">
-      <Filter>Source Files</Filter>
+    <ClCompile Include="Sources\GameStates\GameState.cpp">
+      <Filter>Source Files\GameStates</Filter>
+    </ClCompile>
+    <ClCompile Include="Sources\GameStates\GameStateMachine.cpp">
+      <Filter>Source Files\GameStates</Filter>
+    </ClCompile>
+    <ClCompile Include="Sources\GameStates\MainTitleScene.cpp">
+      <Filter>Source Files\GameStates</Filter>
+    </ClCompile>
+    <ClCompile Include="Sources\GameStates\InGameScene.cpp">
+      <Filter>Source Files\GameStates</Filter>
+    </ClCompile>
+    <ClCompile Include="Sources\Managers\MouseManager.cpp">
+      <Filter>Source Files\Managers</Filter>
+    </ClCompile>
+    <ClCompile Include="Sources\UI\UIButton.cpp">
+      <Filter>Source Files\UI</Filter>
+    </ClCompile>
+    <ClCompile Include="Sources\GameObjects\GameObject.cpp">
+      <Filter>Source Files\GameObjects</Filter>
+    </ClCompile>
+    <ClCompile Include="Sources\GameObjects\Spartan.cpp">
+      <Filter>Source Files\GameObjects</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="Includes\Core\Application.h">
+    <ClInclude Include="Includes\GameStates\MainTitleScene.hpp">
+      <Filter>Header Files\GameStates</Filter>
+    </ClInclude>
+    <ClInclude Include="Includes\GameStates\GameState.hpp">
+      <Filter>Header Files\GameStates</Filter>
+    </ClInclude>
+    <ClInclude Include="Includes\GameStates\GameStateMachine.hpp">
+      <Filter>Header Files\GameStates</Filter>
+    </ClInclude>
+    <ClInclude Include="Includes\GameStates\InGameScene.hpp">
+      <Filter>Header Files\GameStates</Filter>
+    </ClInclude>
+    <ClInclude Include="Includes\Core\Application.hpp">
       <Filter>Header Files\Core</Filter>
     </ClInclude>
-    <ClInclude Include="Includes\Utils\Utils.h">
+    <ClInclude Include="Includes\Core\Singleton.hpp">
+      <Filter>Header Files\Core</Filter>
+    </ClInclude>
+    <ClInclude Include="Includes\Utils\Utils.hpp">
       <Filter>Header Files\Utils</Filter>
     </ClInclude>
-    <ClInclude Include="Includes\Managers\MouseManager.h">
+    <ClInclude Include="Includes\Managers\MouseManager.hpp">
       <Filter>Header Files\Managers</Filter>
+    </ClInclude>
+    <ClInclude Include="Includes\UI\UIButton.hpp">
+      <Filter>Header Files\UI</Filter>
+    </ClInclude>
+    <ClInclude Include="Includes\GameObjects\GameObject.hpp">
+      <Filter>Header Files\GameObjects</Filter>
+    </ClInclude>
+    <ClInclude Include="Includes\GameObjects\Spartan.hpp">
+      <Filter>Header Files\GameObjects</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

@@ -21,12 +21,27 @@
   <ItemGroup>
     <ClCompile Include="Sources\Core\Application.cpp" />
     <ClCompile Include="Sources\Core\Main.cpp" />
-    <ClCompile Include="Sources\Core\Managers\MouseManager.cpp" />
+    <ClCompile Include="Sources\GameObjects\GameObject.cpp" />
+    <ClCompile Include="Sources\GameObjects\Spartan.cpp" />
+    <ClCompile Include="Sources\GameStates\GameState.cpp" />
+    <ClCompile Include="Sources\GameStates\GameStateMachine.cpp" />
+    <ClCompile Include="Sources\GameStates\InGameScene.cpp" />
+    <ClCompile Include="Sources\GameStates\MainTitleScene.cpp" />
+    <ClCompile Include="Sources\Managers\MouseManager.cpp" />
+    <ClCompile Include="Sources\UI\UIButton.cpp" />
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="Includes\Core\Application.h" />
-    <ClInclude Include="Includes\Managers\MouseManager.h" />
-    <ClInclude Include="Includes\Utils\Utils.h" />
+    <ClInclude Include="Includes\Core\Application.hpp" />
+    <ClInclude Include="Includes\Core\Singleton.hpp" />
+    <ClInclude Include="Includes\GameObjects\GameObject.hpp" />
+    <ClInclude Include="Includes\GameObjects\Spartan.hpp" />
+    <ClInclude Include="Includes\GameStates\GameState.hpp" />
+    <ClInclude Include="Includes\GameStates\GameStateMachine.hpp" />
+    <ClInclude Include="Includes\GameStates\InGameScene.hpp" />
+    <ClInclude Include="Includes\GameStates\MainTitleScene.hpp" />
+    <ClInclude Include="Includes\Managers\MouseManager.hpp" />
+    <ClInclude Include="Includes\UI\UIButton.hpp" />
+    <ClInclude Include="Includes\Utils\Utils.hpp" />
   </ItemGroup>
   <PropertyGroup Label="Globals">
     <VCProjectVersion>16.0</VCProjectVersion>
@@ -89,9 +104,12 @@
       <Optimization>Disabled</Optimization>
       <SDLCheck>true</SDLCheck>
       <ConformanceMode>true</ConformanceMode>
+      <AdditionalIncludeDirectories>$(SolutionDir)3rdPartyLibs\SDL2-2.0.9\include;$(SolutionDir)Project_Slug\Includes\;$(SolutionDir)3rdPartyLibs\SDL2_image-2.0.5\include;$(SolutionDir)3rdPartyLibs\Visual Leak Detector\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
+      <AdditionalLibraryDirectories>$(SolutionDir)3rdPartyLibs\SDL2-2.0.9\lib\x86;$(SolutionDir)3rdPartyLibs\SDL2_image-2.0.5\lib\x86;$(SolutionDir)3rdPartyLibs\Visual Leak Detector\lib\Win32;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+      <AdditionalDependencies>SDL2.lib;SDL2main.lib;SDL2_image.lib;vld.lib;%(AdditionalDependencies)</AdditionalDependencies>
     </Link>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
@@ -100,12 +118,12 @@
       <Optimization>Disabled</Optimization>
       <SDLCheck>true</SDLCheck>
       <ConformanceMode>true</ConformanceMode>
-      <AdditionalIncludeDirectories>$(SolutionDir)\3rdPartyLibs\SDL2-2.0.9\include;$(SolutionDir)\Project_Slug;$(SolutionDir)\3rdPartyLibs\SDL2_image-2.0.5\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>$(SolutionDir)3rdPartyLibs\SDL2-2.0.9\include;$(SolutionDir)Project_Slug\Includes\;$(SolutionDir)3rdPartyLibs\SDL2_image-2.0.5\include;$(SolutionDir)3rdPartyLibs\Visual Leak Detector\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
-      <AdditionalLibraryDirectories>$(SolutionDir)\3rdPartyLibs\SDL2-2.0.9\lib\x64;$(SolutionDir)\3rdPartyLibs\SDL2_image-2.0.5\lib\x64;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
-      <AdditionalDependencies>SDL2.lib;SDL2main.lib;SDL2_image.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalLibraryDirectories>$(SolutionDir)3rdPartyLibs\SDL2-2.0.9\lib\x64;$(SolutionDir)3rdPartyLibs\SDL2_image-2.0.5\lib\x64;$(SolutionDir)3rdPartyLibs\Visual Leak Detector\lib\Win64;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+      <AdditionalDependencies>SDL2.lib;SDL2main.lib;SDL2_image.lib;vld.lib;%(AdditionalDependencies)</AdditionalDependencies>
       <GenerateDebugInformation>DebugFull</GenerateDebugInformation>
     </Link>
   </ItemDefinitionGroup>

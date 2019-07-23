@@ -1,40 +1,65 @@
 #pragma once
+
+
+//-----------------------------------------------------------------
+// SDL
+//-----------------------------------------------------------------
+#include <SDL.h>
+#include <SDL_render.h>
+
+//-----------------------------------------------------------------
+// Cores
+//-----------------------------------------------------------------
+#include "Utils/Utils.hpp"
+#include "Core/Singleton.hpp"
+#include "GameStates/GameStateMachine.hpp"
+
+//-----------------------------------------------------------------
+// STL
+//-----------------------------------------------------------------
 #include <memory>
-#include "Includes/Utils/Utils.h"
-
 #include <time.h>
-
-
+ 
 namespace Slug
 {
 	namespace Core
 	{
-		class Application
+		class Application : public Singleton<Application>
 		{
 		// ----- Member Variables -----
 		private:
-			static std::shared_ptr<Application> m_pInstance;
-			
 			SDL_Window* m_pWindow;
 			SDL_Renderer* m_pRenderer;
 
 			Uint64 m_frameCounter;
 			Uint64 m_lastFrameCounter;
-			class MouseManager* m_pMouseTracker;
 
 			double m_deltaSeconds;
-			bool m_isPlaying;
+
+			GameStates::GameStateMachine m_gsm;
 
 		// ----- Member Functions -----
 		private:
-			Application() = default;
-			~Application();
 		public:
+			Application();
+			~Application();
 
-			static std::shared_ptr<Application> GetInstance();
+			//static std::shared_ptr<Application> GetInstance();
+
+			// --- Initialization ---
 			void AfterInit();
+
+			// --- Update ---
 			void Update();
-			void DestroyWorld();
+
+			// --- Input ---
+			void Input();
+			
+			void GetFrameCount();
+
+			//void DestroyWorld();
+
+			bool IsPlaying() const { return m_gsm.IsPlaying(); }
 		};
 	};
 };
