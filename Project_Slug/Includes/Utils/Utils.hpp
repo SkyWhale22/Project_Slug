@@ -9,8 +9,8 @@ constexpr static size_t WINDOW_HEIGHT	= 720;
 //--------------------------------------------------
 // Sprites
 //--------------------------------------------------
-constexpr static size_t SPRITE_WIDTH	= 148;
-constexpr static size_t SPRITE_HEIGHT	= 148;
+constexpr static size_t SPRITE_WIDTH	= 74;
+constexpr static size_t SPRITE_HEIGHT	= 74;
 
 //--------------------------------------------------
 // Macros

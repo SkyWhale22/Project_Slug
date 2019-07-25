@@ -1,23 +1,29 @@
 #pragma once
 #include <SDL.h>
-#include "Utils/Utils.hpp"
+#include "Utils/Transform.hpp"
 
 namespace Slug
 {
+	namespace Utils
+	{
+		class Transform;
+	}
+
 	namespace Objects
 	{
 		class GameObject
 		{
 		// --- Member Variables ---
-		public:
+		protected:
 			Movement		m_moveDir;
 			SDL_Rect		m_destRect;
-			Vector2			m_pos;
-		
-			// Currently Not been used.
-			//SDL_Texture*	m_pSelectedTexture;
+			//Vector2			m_pos;
+			//double			m_degree;
 
-		public:
+			Utils::Transform m_transform;
+		
+			// Currently Not being used.
+			//SDL_Texture*	m_pSelectedTexture;
 
 		// --- Member Functions ---
 		private:
@@ -26,8 +32,10 @@ namespace Slug
 
 			virtual void Update(double deltaSeconds) = 0;
 			virtual void Render(SDL_Renderer* const pRenderer) = 0;
-			
-			inline Vector2 GetPosition() const { return m_pos; }
+
+			inline Utils::Transform& GetTransform() { return m_transform; }
+			//inline Vector2 GetPosition() const { return m_pos; }
+			//inline void SetPosition(const Vector2& pos) { m_pos = pos; }
 		};
 	}
 }

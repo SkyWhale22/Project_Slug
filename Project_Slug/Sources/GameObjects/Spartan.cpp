@@ -1,31 +1,37 @@
 #include "GameObjects/Spartan.hpp"
+#include "GameObjects/Weapon.hpp"
 #include <iostream>
+#include "Managers/MouseManager.hpp"
 namespace Slug
 {
 	namespace Objects
 	{
 		Spartan::Spartan()
+			: m_pWeapon(new Weapon(0,0))
 		{
-			m_pos = { 0, 0 };
+			m_transform = Utils::Transform(0, 0, 0);
 			
-			m_destRect = { (int)this->m_pos.m_x, (int)this->m_pos.m_y, 0, 0};
+			m_destRect = { (int)m_transform.GetPositionX(), (int)m_transform.GetPositionY(), 0, 0};
 		}
 		Spartan::Spartan(float posX, float posY)
+			: m_pWeapon(new Weapon(posX, posY))
 		{
-			m_pos.m_x = posX;
-			m_pos.m_y = posY;
+			m_transform = Utils::Transform(0, 0, 0);
 
 			m_destRect = { (int)(posX - (SPRITE_WIDTH / 2)), (int)(posY - (SPRITE_HEIGHT / 2)), SPRITE_WIDTH, SPRITE_HEIGHT };
 		}
 		Spartan::Spartan(const Vector2& initPos)
+			: m_pWeapon(new Weapon(initPos))
 		{
-			m_pos = initPos;
+			m_transform = Utils::Transform(initPos, 0);
 			
 			m_destRect = { (int)(initPos.m_x - (SPRITE_WIDTH / 2)), (int)(initPos.m_y - (SPRITE_HEIGHT / 2)), SPRITE_WIDTH, SPRITE_HEIGHT };
 		}
 
 		Spartan::~Spartan()
 		{
+			delete m_pWeapon;
+			m_pWeapon = nullptr;
 		}
 
 		void Spartan::Update(double deltaSeconds)
@@ -35,25 +41,29 @@ namespace Slug
 
 			if (m_moveDir.m_up)
 			{
-				m_pos.m_y -= (float)(kMovingSpeed * deltaSeconds);
+				m_transform.SetPositionY(m_transform.GetPositionY() - (float)(kMovingSpeed * deltaSeconds));
 			}
 
 			if (m_moveDir.m_down)
 			{
-				m_pos.m_y += (float)(kMovingSpeed * deltaSeconds);
+				m_transform.SetPositionY(m_transform.GetPositionY() + (float)(kMovingSpeed * deltaSeconds));
 			}
 
 			if (m_moveDir.m_right)
 			{
-				m_pos.m_x += (float)(kMovingSpeed * deltaSeconds);
+				m_transform.SetPositionX(m_transform.GetPositionX() + (float)(kMovingSpeed * deltaSeconds));
 			}
 
 			if (m_moveDir.m_left)
 			{
-				m_pos.m_x -= (float)(kMovingSpeed * deltaSeconds);
+				m_transform.SetPositionX(m_transform.GetPositionX() - (float)(kMovingSpeed * deltaSeconds));
 			}
 
-			m_destRect = { (int)(m_pos.m_x - (SPRITE_WIDTH / 2)), (int)(m_pos.m_y - (SPRITE_HEIGHT / 2)), SPRITE_WIDTH, SPRITE_HEIGHT };
+			m_destRect = { (int)(m_transform.GetPositionX() - (SPRITE_WIDTH / 2)), (int)(m_transform.GetPositionY() - (SPRITE_HEIGHT / 2)), SPRITE_WIDTH, SPRITE_HEIGHT };
+		
+			m_pWeapon->GetTransform().SetPosition(m_transform.GetPositionRef());
+			m_pWeapon->Update(deltaSeconds);
+			m_pWeapon->Rotate(Managers::MouseManager::GetInstance()->GetMousePosition());
 		}
 
 		void Spartan::Render(SDL_Renderer* const pRenderer)
@@ -65,8 +75,10 @@ namespace Slug
 			SDL_RenderFillRect(pRenderer, &m_destRect);
 
 			SDL_SetRenderDrawColor(pRenderer, 0, 0, 255, 255);
-			SDL_Rect dest = { (int)m_pos.m_x - 5, (int)m_pos.m_y - 5, 10, 10 };
+			SDL_Rect dest = { (int)m_transform.GetPositionX() - 5, (int)m_transform.GetPositionY() - 5, 10, 10 };
 			SDL_RenderFillRect(pRenderer, &dest);
+
+			m_pWeapon->Render(pRenderer);
 		}
 
 		void Spartan::Input(const SDL_Event& event)

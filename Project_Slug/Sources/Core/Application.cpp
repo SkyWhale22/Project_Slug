@@ -68,7 +68,7 @@ namespace Slug
 			m_lastFrameCounter = 0;
 
 			// ===== Mouse Tracker =====
-			SDL_ShowCursor(0);
+			//SDL_ShowCursor(0);
 			m_pMouseTracker = Managers::MouseManager::GetInstance();
 
 			ShowConsoleCursor(false);

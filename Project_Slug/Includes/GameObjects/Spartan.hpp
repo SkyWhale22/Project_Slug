@@ -4,8 +4,13 @@ namespace Slug
 {
 	namespace Objects
 	{
+		class Weapon;
+
 		class Spartan : public GameObject
 		{
+		private:
+			Weapon* m_pWeapon;
+
 		public:
 			Spartan();
 			Spartan(float posX, float posY);

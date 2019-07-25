@@ -88,7 +88,7 @@ namespace Slug
 
 
 			// Render mouse
-			SDL_Rect dest = { Managers::MouseManager::GetInstance()->GetMousePosition().m_x - 5, Managers::MouseManager::GetInstance()->GetMousePosition().m_y - 5, 10, 10 };
+			SDL_Rect dest = { (int)Managers::MouseManager::GetInstance()->GetMousePosition().m_x - 5, (int)Managers::MouseManager::GetInstance()->GetMousePosition().m_y - 5, 10, 10 };
 			SDL_RenderFillRect(pRenderer, &dest);
 
 			//-------------------------------------------
