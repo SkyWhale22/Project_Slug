@@ -3,14 +3,16 @@
 //--------------------------------------------------
 // Windows
 //--------------------------------------------------
-constexpr static size_t WINDOW_WIDTH	= 1280;
-constexpr static size_t WINDOW_HEIGHT	= 720;
+constexpr static size_t kWindowWidth	= 1024;
+constexpr static size_t kWindowHeight	= 768;
+constexpr static size_t kBoundaryWidth	= 384;
+constexpr static size_t kBoundaryHeight = 288;
 
 //--------------------------------------------------
 // Sprites
 //--------------------------------------------------
-constexpr static size_t SPRITE_WIDTH	= 74;
-constexpr static size_t SPRITE_HEIGHT	= 74;
+constexpr static size_t SPRITE_WIDTH	= 72;
+constexpr static size_t SPRITE_HEIGHT	= 72;
 
 //--------------------------------------------------
 // Macros
@@ -20,7 +22,7 @@ constexpr static size_t SPRITE_HEIGHT	= 74;
 //--------------------------------------------------
 // Parameters
 //--------------------------------------------------
-constexpr static unsigned int kMovingSpeed = 500;
+constexpr static unsigned int kMovingSpeed = 300;
 
 //--------------------------------------------------
 // Object related

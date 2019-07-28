@@ -4,9 +4,9 @@
 #include <Managers/MouseManager.hpp>
 
 //-----------------------------------------------------------------
-// UI
+// Core
 //-----------------------------------------------------------------
-//#include "UI/UIButton.hpp"
+#include "..//Camera.hpp"
 
 //-----------------------------------------------------------------
 // UI
@@ -21,7 +21,7 @@ namespace Slug
 		// In Game Scene
 		//------------------------------------------------------
 		InGameScene::InGameScene()
-			: m_pPlayer(new Objects::Spartan({100, 100}))
+			: m_pPlayer(new Objects::Spartan(640, 360))
 		{
 		}
 
@@ -34,6 +34,7 @@ namespace Slug
 		void InGameScene::OnEnter(GameStateMachine* pStateMachine)
 		{
 			GameState::OnEnter(pStateMachine);
+			Core::Camera::GetInstance()->SetFollowingObj(m_pPlayer);
 			std::cout << "In game state!!" << std::endl;
 		}
 
@@ -44,6 +45,7 @@ namespace Slug
 		void InGameScene::OnUpdate(double deltaSeconds)
 		{
 			m_pPlayer->Update(deltaSeconds);
+			Core::Camera::GetInstance()->Update(deltaSeconds);
 		}
 
 		void InGameScene::OnHandleInput(const SDL_Event& event)
@@ -81,7 +83,6 @@ namespace Slug
 			SDL_RenderClear(pRenderer);
 
 			// ------ Put objects to render below! ------
-			m_pPlayer->Render(pRenderer);
 
 			// Change color to yellow
 			SDL_SetRenderDrawColor(pRenderer, 255, 255, 0, 255);
@@ -91,6 +92,16 @@ namespace Slug
 			SDL_Rect dest = { (int)Managers::MouseManager::GetInstance()->GetMousePosition().m_x - 5, (int)Managers::MouseManager::GetInstance()->GetMousePosition().m_y - 5, 10, 10 };
 			SDL_RenderFillRect(pRenderer, &dest);
 
+			Vector2 cameraPos = Core::Camera::GetInstance()->GetPosition();
+			
+			// --- For testing ---
+			dest = { 500 - (int)cameraPos.m_x , 500 - (int)cameraPos.m_y, 300, 300 };
+			//dest = { 500 , 500, 300, 300 };
+			SDL_RenderFillRect(pRenderer, &dest);
+
+			Core::Camera::GetInstance()->DrawDebug(pRenderer);
+
+			m_pPlayer->Render(pRenderer);
 			//-------------------------------------------
 
 			SDL_RenderPresent(pRenderer);

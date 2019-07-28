@@ -13,6 +13,7 @@
 #include "Utils/Utils.hpp"
 #include "Core/Singleton.hpp"
 #include "GameStates/GameStateMachine.hpp"
+#include "..//Camera.hpp"
 
 //-----------------------------------------------------------------
 // Managers
@@ -45,7 +46,8 @@ namespace Slug
 			// ==== Managers ====
 			GameStates::GameStateMachine* m_pGsm;
 			Managers::MouseManager* m_pMouseTracker;
-			
+			Camera* m_pCamera;
+
 		// ----- Member Functions -----
 		private:
 		public:

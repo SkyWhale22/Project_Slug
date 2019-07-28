@@ -1,4 +1,6 @@
 #include "Utils/Transform.hpp"
+#include "..//Camera.hpp"
+#include <iostream>
 
 using namespace Slug::Utils;
 using Slug::Utils::Transform;
@@ -10,24 +12,28 @@ namespace Slug
 		Transform::Transform()
 			: m_position({0, 0})
 			, m_angle(0)
+			, m_velocity({0, 0})
 		{
 		}
 
 		Transform::Transform(const Transform& kInstance)
 			: m_position(kInstance.m_position)
 			, m_angle(kInstance.m_angle)
+			, m_velocity({ 0, 0 })
 		{
 		}
 
 		Transform::Transform(float x, float y, double angle)
 			: m_position({x, y})
 			, m_angle(angle)
+			, m_velocity({ 0, 0 })
 		{
 		}
 
 		Transform::Transform(const Vector2& pos, double angle)
 			: m_position(pos)
 			, m_angle(angle)
+			, m_velocity({ 0, 0 })
 		{
 		}
 
@@ -43,6 +49,12 @@ namespace Slug
 		void Transform::SetPosition(float x, float y)
 		{
 			m_position = { x, y };
+		}
+
+		void Transform::Update(double deltaSeconds)
+		{
+			//m_position.m_x += (float)(m_velocity.m_x * kMovingSpeed);
+			//m_position.m_y += (float)(m_velocity.m_y * kMovingSpeed);
 		}
 
 		const Vector2 Transform::GetPosition()
@@ -78,6 +90,16 @@ namespace Slug
 		void Transform::SetPositionY(const float y)
 		{
 			m_position.m_y = y;
+		}
+
+		void Transform::SetVelocityX(float x)
+		{
+			m_velocity.m_x = x;
+		}
+
+		void Transform::SetVelocityY(float y)
+		{
+			m_velocity.m_y = y;
 		}
 
 		void Transform::Rotate(double angle)

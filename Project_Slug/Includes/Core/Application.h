@@ -24,6 +24,8 @@ namespace Slug
 {
 	namespace Core
 	{
+		class Camera;
+
 		class Application : public Singleton<Application>
 		{
 		// ----- Member Variables -----
@@ -37,6 +39,8 @@ namespace Slug
 			double m_deltaSeconds;
 
 			GameStates::GameStateMachine m_gsm;
+
+			Camera m_camera;
 
 		// ----- Member Functions -----
 		private:

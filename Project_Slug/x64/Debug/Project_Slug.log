@@ -1,0 +1,15 @@
+﻿  Application.cpp
+  Main.cpp
+  GameObject.cpp
+  Spartan.cpp
+  Weapon.cpp
+  GameState.cpp
+  GameStateMachine.cpp
+  InGameScene.cpp
+  MainTitleScene.cpp
+  MouseManager.cpp
+  UIButton.cpp
+  Transform.cpp
+  Generating Code...
+C:\Users\skywh\source\repos\Project_Slug\Project_Slug\Sources\Core\Application.cpp(153,26): warning C4244:  'argument': conversion from 'float' to 'Uint32', possible loss of data
+  Project_Slug.vcxproj -> C:\Users\skywh\source\repos\Project_Slug\x64\Debug\Project_Slug.exe

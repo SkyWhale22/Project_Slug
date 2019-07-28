@@ -9,6 +9,7 @@ namespace Slug
 		{
 		private:
 			Vector2		m_position;
+			Vector2		m_velocity;
 			double		m_angle;
 
 		public:
@@ -18,6 +19,7 @@ namespace Slug
 			Transform(const Vector2& pos, double angle);
 			~Transform();
 
+			void Update(double deltaSeconds);
 			const Vector2 GetPosition();
 			const Vector2& GetPositionRef();
 
@@ -30,6 +32,9 @@ namespace Slug
 
 			void SetPositionX(const float x);
 			void SetPositionY(const float y);
+
+			void SetVelocityX(float x);
+			void SetVelocityY(float y);
 
 			void Rotate(double angle);
 

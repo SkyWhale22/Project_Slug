@@ -33,6 +33,7 @@ namespace Slug
 			virtual void Update(double deltaSeconds) = 0;
 			virtual void Render(SDL_Renderer* const pRenderer) = 0;
 
+			SDL_Rect GetDestRect() { return m_destRect; }
 			inline Utils::Transform& GetTransform() { return m_transform; }
 			//inline Vector2 GetPosition() const { return m_pos; }
 			//inline void SetPosition(const Vector2& pos) { m_pos = pos; }

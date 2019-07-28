@@ -3,7 +3,6 @@
 #include <Windows.h>
 #include "Core/Application.hpp"
 
-
 //-----------------------------------------------------------------
 // SDL
 //-----------------------------------------------------------------
@@ -26,14 +25,16 @@ namespace Slug
 	{
 		Application::Application()
 			: m_deltaSeconds(0)
+			, m_pGsm(GameStates::GameStateMachine::GetInstance())
+			, m_pCamera(Camera::GetInstance())
 		{                      
-				// --- Initialize the game --- 
+			// --- Initialize the game --- 
 			srand((unsigned)time(nullptr));
 
 			// For deltaTime.
 			SDL_Init(SDL_INIT_VIDEO | SDL_INIT_TIMER);
 			//m_pScreen = (WINDOW_WIDTH, WINDOW_HEIGHT, 32, SDL_SWSURFACE);
-			m_pWindow = SDL_CreateWindow("Project: Slug", 30, 80, WINDOW_WIDTH, WINDOW_HEIGHT, SDL_WINDOW_SHOWN);
+			m_pWindow = SDL_CreateWindow("Project: Slug", 30, 80, kWindowWidth, kWindowHeight, SDL_WINDOW_SHOWN);
 			SDL_CHECK(m_pWindow);
 
 			m_pRenderer = SDL_CreateRenderer(m_pWindow, -1, SDL_RendererFlags::SDL_RENDERER_ACCELERATED);
@@ -58,10 +59,10 @@ namespace Slug
 			//int framsToDisplay = 1000 / frameCounter;
 
 			// ===== Game State Machine =====
-			m_pGsm = GameStates::GameStateMachine::GetInstance();
 			m_pGsm->SetDesiredState(GameStates::GameState::Type::kGamePlay);
 			m_pGsm->SetPlaying(m_pWindow && m_pRenderer && imgInitialized);
 			
+			// ===== Camera =====
 
 			// Delta Time
 			m_frameCounter = SDL_GetPerformanceCounter();
@@ -110,9 +111,8 @@ namespace Slug
 				//float elapsedMS = (end - start) / (float)SDL_GetPerformanceFrequency() * 1000.0f;
 
 				// Cap to 60 FPS
-
-				COORD pos{0, 2};
-				SetConsoleCursorPosition(GetStdHandle(STD_OUTPUT_HANDLE), pos);
+				//COORD pos{0, 2};
+				//SetConsoleCursorPosition(GetStdHandle(STD_OUTPUT_HANDLE), pos);
 			}
 
 		}

@@ -19,6 +19,7 @@
     </ProjectConfiguration>
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="Camera.cpp" />
     <ClCompile Include="Sources\Core\Application.cpp" />
     <ClCompile Include="Sources\Core\Main.cpp" />
     <ClCompile Include="Sources\GameObjects\GameObject.cpp" />
@@ -33,6 +34,7 @@
     <ClCompile Include="Sources\Utils\Transform.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="Camera.hpp" />
     <ClInclude Include="Includes\Core\Application.hpp" />
     <ClInclude Include="Includes\Core\Singleton.hpp" />
     <ClInclude Include="Includes\GameObjects\GameObject.hpp" />
