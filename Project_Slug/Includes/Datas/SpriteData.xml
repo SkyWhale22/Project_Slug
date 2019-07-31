@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<!--
+    ==================================================
+                   File Description
+    ==================================================
+    This file stores data for each character's sprite
+    and animation.
+    
+    Each block will have same elements; path of the
+    sprite, size of the sprite, and data chunk for
+    each animation.
+-->
+<Body>
+  <!-- Player data -->
+  <Spartan>
+    <!-- Sprite path -->
+    <SpritePath>Resources/Sprites/Spartan.png</SpritePath>
+    
+    <!-- Width and height size of sprite -->
+    <SpriteSize width = "32" height = "32"/>
+    
+    <!--
+      frame   : total number of sprites of a certain animation.
+      posX    : x position of where the sprite starts.
+      poxY    : y position of where the sprite starts.
+      centerX : x position which destRect will be rotated 
+      centerY : y position which destRect will be rotated 
+      -->
+    <Animation>
+      <Idle   frame = '1' posX = '0' posY = '0' centerX = '0' centerY = '0'/>
+      <Walk   frame = '4' posX = '0' posY = '32' centerX = '0' centerY = '0'/>
+      <Attack frame = '0' posX = '0' posY = '180' centerX = '0' centerY = '0'/>
+      <Die    frame = '0' posX = '0' posY = '270' centerX = '0' centerY = '0'/>
+    </Animation>
+  </Spartan>
+</Body>
+
+
+
+
+
+
+
+<!-- Currently not being used -->
+<!-- 
+  <Elite>
+    <SpriteSize width = "90" height = "90"/>
+    <SpritePath>Resources/Sprites/Spartan.png</SpritePath>
+    <Animation>
+      <Idle frame = '4' posX = '0' posY = '0' centerX = '19' centerY = '27'/>
+      <Walk frame = '4' posX = '0' posY = '0' centerX = '19' centerY = '27'/>
+      <Attack frame = '4' posX = '0' posY = '0' centerX = '19' centerY = '27'/>
+      <Die frame = '4' posX = '0' posY = '0' centerX = '19' centerY = '27'/>
+    </Animation>
+  </Elite>
+
+  <Grunt>
+    <SpriteSize width = "90" height = "90"/>
+    <SpritePath>Resources/Sprites/Spartan.png</SpritePath>
+    <Animation>
+      <Idle frame = '4' posX = '0' posY = '0' centerX = '19' centerY = '27'/>
+      <Walk frame = '4' posX = '0' posY = '0' centerX = '19' centerY = '27'/>
+      <Attack frame = '4' posX = '0' posY = '0' centerX = '19' centerY = '27'/>
+      <Die frame = '4' posX = '0' posY = '0' centerX = '19' centerY = '27'/>
+    </Animation>
+  </Grunt>
+  -->

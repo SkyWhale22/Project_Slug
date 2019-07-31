@@ -6,7 +6,7 @@
 //-----------------------------------------------------------------
 // Core
 //-----------------------------------------------------------------
-#include "..//Camera.hpp"
+#include "Core/Camera.hpp"
 
 //-----------------------------------------------------------------
 // UI
@@ -99,9 +99,11 @@ namespace Slug
 			//dest = { 500 , 500, 300, 300 };
 			SDL_RenderFillRect(pRenderer, &dest);
 
-			Core::Camera::GetInstance()->DrawDebug(pRenderer);
 
 			m_pPlayer->Render(pRenderer);
+#if DEBUG_CAMERA
+			Core::Camera::GetInstance()->DrawDebug(pRenderer);
+#endif
 			//-------------------------------------------
 
 			SDL_RenderPresent(pRenderer);

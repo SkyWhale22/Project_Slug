@@ -3,16 +3,17 @@
 //--------------------------------------------------
 // Windows
 //--------------------------------------------------
-constexpr static size_t kWindowWidth	= 1024;
-constexpr static size_t kWindowHeight	= 768;
-constexpr static size_t kBoundaryWidth	= 384;
-constexpr static size_t kBoundaryHeight = 288;
+constexpr static size_t s_kWindowWidth	= 1024;
+constexpr static size_t s_kWindowHeight	= 768;
+constexpr static size_t s_kBoundaryWidth = 288;
+constexpr static size_t s_kBoundaryHeight = 216;
 
 //--------------------------------------------------
 // Sprites
 //--------------------------------------------------
-constexpr static size_t SPRITE_WIDTH	= 72;
-constexpr static size_t SPRITE_HEIGHT	= 72;
+constexpr static size_t s_kSpriteWidth	= 120;
+constexpr static size_t s_kSpriteHeight	= 120;
+constexpr static size_t s_kTotalAnimSpartan = 4;
 
 //--------------------------------------------------
 // Macros
@@ -20,9 +21,15 @@ constexpr static size_t SPRITE_HEIGHT	= 72;
 #define SDL_CHECK(x) if(x == nullptr) { std::cout << "Error: " << SDL_GetError() << '\n';}
 
 //--------------------------------------------------
+// In-Dev
+//--------------------------------------------------
+#define DEBUG false
+#define DEBUG_CAMERA false
+//--------------------------------------------------
 // Parameters
 //--------------------------------------------------
-constexpr static unsigned int kMovingSpeed = 300;
+constexpr static unsigned int s_kMovingSpeed = 300;
+constexpr static unsigned int s_kCameraSpeed = 330;
 
 //--------------------------------------------------
 // Object related
@@ -48,3 +55,51 @@ enum class MovingDirection
 	kRight,
 	kLeft
 };
+
+
+
+
+/******************************************************
+
+int x = 300;
+int y = 300;
+int size = 100;
+
+testDest = { x, y, size, size };
+
+m_test[0] = { (testDest.x - size / 2), (testDest.y - size / 2) };
+m_test[1] = { (testDest.x - size / 2) + testDest.w, (testDest.y - size / 2) };
+m_test[2] = { (testDest.x - size / 2) + testDest.w, (testDest.y - size / 2) + testDest.h };
+m_test[3] = { (testDest.x - size / 2), (testDest.y - size / 2) + testDest.h };
+
+SDL_Point Global_Rotate(SDL_Point origin)
+{
+	const int size = 100;
+
+	SDL_Point transform = { 300, 300 };
+
+	int x = (int)((transform.x) + ((double)origin.y - transform.y) * sin(-sDegree) + ((double)origin.x - transform.x) * cos(sDegree));
+	int y = (int)((transform.y) + ((double)origin.y - transform.y) * cos(sDegree) - ((double)origin.x - transform.x) * sin(-sDegree));
+
+	return { x, y };
+}
+
+			//---- Original ----
+			// int x = (origin.y * sin(-radian)) + (origin.x * cos(radian0));
+			// int y = (origin.y * cos(radian))  - (origin.x * sin(-radian));
+			//int x = (int)((m_transform.GetPositionX()) + ((double)origin.y - m_transform.GetPositionY()) * sin(-degree) + ((double)origin.x - m_transform.GetPositionX()) * cos(degree));
+			// int y = (int)((m_transform.GetPositionY()) + ((double)origin.y - m_transform.GetPositionY()) * cos(degree) - ((double)origin.x - m_transform.GetPositionX()) * sin(-degree));
+			//------------------
+
+
+
+******************************************************/
+
+
+/*
+ *  \brief
+ *
+ *  \param
+ *
+ *  \return
+ **/

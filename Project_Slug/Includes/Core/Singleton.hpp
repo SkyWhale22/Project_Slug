@@ -11,7 +11,7 @@ namespace Slug
 		{
 		//----- Member Variables -----
 		private:
-			static std::shared_ptr<Type> m_pInstance;
+			static std::shared_ptr<Type> s_pInstance;
 			static std::once_flag m_onlyOnce;
 
 		public:
@@ -33,17 +33,17 @@ namespace Slug
 		{
 			std::call_once(m_onlyOnce, []
 				{
-					m_pInstance.reset(new Type);
+					s_pInstance.reset(new Type);
 				}
 			);
 
-			return m_pInstance.get();
+			return s_pInstance.get();
 		}
 	}
 }
 
 template<class Type>
-std::shared_ptr<Type> Slug::Core::Singleton<Type>::m_pInstance = nullptr;
+std::shared_ptr<Type> Slug::Core::Singleton<Type>::s_pInstance = nullptr;
 
 template<class Type>
 std::once_flag Slug::Core::Singleton<Type>::m_onlyOnce;

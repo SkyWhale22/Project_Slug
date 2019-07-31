@@ -1,5 +1,5 @@
 #include "Utils/Transform.hpp"
-#include "..//Camera.hpp"
+#include "Core/Camera.hpp"
 #include <iostream>
 
 using namespace Slug::Utils;

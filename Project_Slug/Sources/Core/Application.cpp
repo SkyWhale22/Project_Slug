@@ -23,6 +23,9 @@ namespace Slug
 {
 	namespace Core
 	{
+
+		SDL_Renderer* Application::s_pRenderer = nullptr;
+
 		Application::Application()
 			: m_deltaSeconds(0)
 			, m_pGsm(GameStates::GameStateMachine::GetInstance())
@@ -34,12 +37,12 @@ namespace Slug
 			// For deltaTime.
 			SDL_Init(SDL_INIT_VIDEO | SDL_INIT_TIMER);
 			//m_pScreen = (WINDOW_WIDTH, WINDOW_HEIGHT, 32, SDL_SWSURFACE);
-			m_pWindow = SDL_CreateWindow("Project: Slug", 30, 80, kWindowWidth, kWindowHeight, SDL_WINDOW_SHOWN);
+			m_pWindow = SDL_CreateWindow("Project: Slug", 30, 80, s_kWindowWidth, s_kWindowHeight, SDL_WINDOW_SHOWN);
 			SDL_CHECK(m_pWindow);
-
-			m_pRenderer = SDL_CreateRenderer(m_pWindow, -1, SDL_RendererFlags::SDL_RENDERER_ACCELERATED);
+			 
+			s_pRenderer = SDL_CreateRenderer(m_pWindow, -1, SDL_RendererFlags::SDL_RENDERER_ACCELERATED);
 															  //SDL_RendererFlags::SDL_RENDERER_PRESENTVSYNC);  // < -makes delay
-			SDL_CHECK(m_pRenderer);
+			SDL_CHECK(s_pRenderer);
 
 
 			int imgFlags = IMG_INIT_PNG | IMG_INIT_JPG;
@@ -52,7 +55,7 @@ namespace Slug
 
 
 			// Enable alpha blending
-			SDL_SetRenderDrawBlendMode(m_pRenderer, SDL_BlendMode::SDL_BLENDMODE_BLEND);
+			SDL_SetRenderDrawBlendMode(s_pRenderer, SDL_BlendMode::SDL_BLENDMODE_BLEND);
 
 			// HACK: No even handling, stay open for x frams.
 			//int frameCounter = 60;
@@ -60,7 +63,7 @@ namespace Slug
 
 			// ===== Game State Machine =====
 			m_pGsm->SetDesiredState(GameStates::GameState::Type::kGamePlay);
-			m_pGsm->SetPlaying(m_pWindow && m_pRenderer && imgInitialized);
+			m_pGsm->SetPlaying(m_pWindow && s_pRenderer && imgInitialized);
 			
 			// ===== Camera =====
 
@@ -102,7 +105,7 @@ namespace Slug
 				m_pGsm->Update(m_deltaSeconds); 
 
 				// --- Render
-				m_pGsm->Render(m_pRenderer);
+				m_pGsm->Render(s_pRenderer);
 
 				//Uint64 end = SDL_GetPerformanceCounter();
 				//float elapsed = (end - start) / (float)SDL_GetPerformanceFrequency();
@@ -154,7 +157,7 @@ namespace Slug
 			}
 			
 
-			std::cout << "Current FPS: " << std::to_string((1.0f / elapsed)) << std::endl;
+			//std::cout << "Current FPS: " << std::to_string((1.0f / elapsed)) << std::endl;
 
 			// Remember the last counter
 			m_lastFrameCounter = m_frameCounter;

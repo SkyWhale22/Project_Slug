@@ -19,9 +19,10 @@
     </ProjectConfiguration>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="Camera.cpp" />
     <ClCompile Include="Sources\Core\Application.cpp" />
+    <ClCompile Include="Sources\Core\Camera.cpp" />
     <ClCompile Include="Sources\Core\Main.cpp" />
+    <ClCompile Include="Sources\GameObjects\Character.cpp" />
     <ClCompile Include="Sources\GameObjects\GameObject.cpp" />
     <ClCompile Include="Sources\GameObjects\Spartan.cpp" />
     <ClCompile Include="Sources\GameObjects\Weapon.cpp" />
@@ -31,12 +32,15 @@
     <ClCompile Include="Sources\GameStates\MainTitleScene.cpp" />
     <ClCompile Include="Sources\Managers\MouseManager.cpp" />
     <ClCompile Include="Sources\UI\UIButton.cpp" />
+    <ClCompile Include="Sources\Utils\SquirrelRNG.cpp" />
+    <ClCompile Include="Sources\Utils\tinyxml2.cpp" />
     <ClCompile Include="Sources\Utils\Transform.cpp" />
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="Camera.hpp" />
     <ClInclude Include="Includes\Core\Application.hpp" />
+    <ClInclude Include="Includes\Core\Camera.hpp" />
     <ClInclude Include="Includes\Core\Singleton.hpp" />
+    <ClInclude Include="Includes\GameObjects\Character.hpp" />
     <ClInclude Include="Includes\GameObjects\GameObject.hpp" />
     <ClInclude Include="Includes\GameObjects\Spartan.hpp" />
     <ClInclude Include="Includes\GameObjects\Weapon.hpp" />
@@ -46,6 +50,8 @@
     <ClInclude Include="Includes\GameStates\MainTitleScene.hpp" />
     <ClInclude Include="Includes\Managers\MouseManager.hpp" />
     <ClInclude Include="Includes\UI\UIButton.hpp" />
+    <ClInclude Include="Includes\Utils\SquirrelRNG.h" />
+    <ClInclude Include="Includes\Utils\tinyxml2.h" />
     <ClInclude Include="Includes\Utils\Transform.hpp" />
     <ClInclude Include="Includes\Utils\Utils.hpp" />
   </ItemGroup>

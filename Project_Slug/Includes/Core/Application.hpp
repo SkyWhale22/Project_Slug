@@ -13,7 +13,7 @@
 #include "Utils/Utils.hpp"
 #include "Core/Singleton.hpp"
 #include "GameStates/GameStateMachine.hpp"
-#include "..//Camera.hpp"
+#include "Core/Camera.hpp"
 
 //-----------------------------------------------------------------
 // Managers
@@ -36,8 +36,8 @@ namespace Slug
 		// ----- Member Variables -----
 		private:
 			SDL_Window* m_pWindow;
-			SDL_Renderer* m_pRenderer;
-
+			static SDL_Renderer* s_pRenderer;
+			
 			Uint64 m_frameCounter;
 			Uint64 m_lastFrameCounter;
 
@@ -70,6 +70,9 @@ namespace Slug
 			//void DestroyWorld();
 
 			inline bool IsPlaying() const { return m_pGsm->IsPlaying(); }
+			static SDL_Renderer* GetRenderer() { return s_pRenderer; }
+
+
 		};
 	};
 };

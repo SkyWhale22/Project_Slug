@@ -30,7 +30,7 @@ namespace Slug
 		void UIButton::Update(double deltaSeconds)
 		{
 		}
-
+		
 		void UIButton::Render(SDL_Renderer* const pRenderer)
 		{
 			// Change color to red
