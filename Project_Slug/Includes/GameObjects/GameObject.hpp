@@ -31,12 +31,18 @@ namespace Slug
 			virtual void Initialize() = 0;
 			virtual void Update(double deltaSeconds) = 0;
 			virtual void Render(SDL_Renderer* const pRenderer) = 0;
-			virtual void SetTexture(const char* pSpritePath) = 0;
+			void SetTexture(const char* pSpritePath);
 
 			SDL_Rect GetDestRect() { return m_destRect; }
 			inline Utils::Transform& GetTransform() { return m_transform; }
 			
-			
+			inline Movement GetMovement() { return m_moveDir; }
+			inline Movement* GetMovementPtr()
+			{
+				Movement* pMove = &m_moveDir;
+				return pMove;
+			}
+
 			//inline Vector2 GetPosition() const { return m_pos; }
 			//inline void SetPosition(const Vector2& pos) { m_pos = pos; }
 		};

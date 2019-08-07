@@ -2,6 +2,12 @@
 
 namespace Slug
 {
+	namespace CharacterStates
+	{
+		class CharacterStateBase;
+	}
+	//class CharacterStates::SpartanStateMachine;
+
 	namespace Objects
 	{
 		class Weapon;
@@ -9,7 +15,13 @@ namespace Slug
 		class Spartan : public Character
 		{
 		private:
+			//using SpartanStateMachine = CharacterStates::SpartanStateMachine;
+			using SpartanState = CharacterStates::CharacterStateBase;
+			friend class SpartanStateBase;
+
 			Weapon* m_pWeapon;
+			//SpartanStateMachine* m_pStateMachine;
+			SpartanState* m_pCurrentState;
 
 		public:
 			Spartan();
@@ -21,15 +33,13 @@ namespace Slug
 			virtual void Initialize() override;
 			virtual void Update(double deltaSeconds) override;
 			virtual void Render(SDL_Renderer* const pRenderer) override;
-			virtual void SetTexture(const char* pSpritePath) override;
+			//virtual void SetTexture(const char* pSpritePath) override;
 			
 			// Inherited via Character
 			virtual void InitAnimation() override;
 			virtual void SetAnimation(int type) override;
 	
 			void Input(const SDL_Event& event);
-			void TestFunction(double deltaSeconds);
-
 		};
 	}
 }

@@ -28,8 +28,8 @@ namespace Slug
 
 			void CheckState();
 			void Update(double deltaSeconds);
-			void HandleInput(const SDL_Event& event);
 			void Render(SDL_Renderer* const pRenderer);
+			void HandleInput(const SDL_Event& event);
 
 			void SetDesiredState(GameState::Type newState);
 

@@ -21,10 +21,12 @@ constexpr static size_t s_kTotalAnimSpartan = 4;
 #define SDL_CHECK(x) if(x == nullptr) { std::cout << "Error: " << SDL_GetError() << '\n';}
 
 //--------------------------------------------------
-// In-Dev
+// Debug
 //--------------------------------------------------
-#define DEBUG false
-#define DEBUG_CAMERA false
+#define DEBUG_POSITION	false
+#define DEBUG_CAMERA	false
+#define DEBUG_COLLIDER	false
+
 //--------------------------------------------------
 // Parameters
 //--------------------------------------------------
@@ -46,6 +48,11 @@ struct Movement
 	bool m_down = false;
 	bool m_right = false;
 	bool m_left = false;
+
+	bool IsMoving()
+	{
+		return m_up || m_down || m_right || m_left;
+	}
 };
 
 enum class MovingDirection
@@ -56,6 +63,13 @@ enum class MovingDirection
 	kLeft
 };
 
+enum class AnimationType
+{
+	kIdle,
+	kWalk,
+	kAttack,
+	kDie
+};
 
 
 

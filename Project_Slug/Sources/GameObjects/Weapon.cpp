@@ -34,6 +34,7 @@ namespace Slug
 {
 	namespace Objects
 	{
+		/*
 		//--------------------------------------------------------------------
 		// Basic constructor
 		//--------------------------------------------------------------------
@@ -81,7 +82,7 @@ namespace Slug
 		Weapon::~Weapon()
 		{
 		} 
-
+		*/
 		/**-------------------------------------------------------------------
 		 * 
 		 * Initialization function.
@@ -97,9 +98,11 @@ namespace Slug
 			m_destRect = { (int)m_transform.GetPositionX() - (int)camera.m_x, (int)m_transform.GetPositionY()- (int)camera.m_x, 120, 44 };
 
 			SetTexture("Resources/Sprites/Spartan.png");
+#if DEBUG_COLLIDER
 			UpdateDebugLine();
+#endif
 		}
-
+		
 		// ![ Description ]
 		//--------------------------------------------------------------------
 		// Update dest rect's x, y position and debug line's coordinate
@@ -108,7 +111,6 @@ namespace Slug
 		{
 			Vector2 camera = Core::Camera::GetInstance()->GetPosition();
 			m_destRect.x = (int)m_transform.GetPositionX() - (int)camera.m_x - 29;
-			
 			m_destRect.y = (int)m_transform.GetPositionY() - (int)camera.m_y - 22;
 			
 			UpdateDebugLine();
@@ -122,11 +124,10 @@ namespace Slug
 		//--------------------------------------------------------------------
 		void Weapon::Render(SDL_Renderer* const pRenderer)
 		{
-			
 			Vector2 camera = Core::Camera::GetInstance()->GetPosition();
 			Vector2 mouse = Managers::MouseManager::GetInstance()->GetMousePosition();
 
-#if DEBUG 
+#if DEBUG_POSITION 
 			// --- Debug line ---
 			SDL_Point debugRect[4];
 			
@@ -149,26 +150,18 @@ namespace Slug
 			// --- Render Sprite ---
 			SDL_RenderCopyEx(pRenderer, m_pTexture, &m_resourceRect, &m_destRect, m_transform.GetAngle(), &center, renderFlip);
 
+#if DEBUG_POSITION
 			// --- Actual Point ---
-#if DEBUG
 			SDL_SetRenderDrawColor(pRenderer, 255, 0, 0, 255);
 			SDL_RenderFillRect(pRenderer, &dest);
 #endif
 		}
 
-		void Weapon::SetTexture(const char* pSpritePath)
-		{
-			if (m_pTexture)
-				SDL_DestroyTexture(m_pTexture);
-
-			m_pTexture = IMG_LoadTexture(Core::Application::GetRenderer(), "Resources/Sprites/Spartan.png");
-
-		}
 		void Weapon::UpdateDebugLine()
 		{
 			m_points[0] = { m_destRect.x,					m_destRect.y };
-			m_points[1] = { m_destRect.x + m_destRect.w,		m_destRect.y };
-			m_points[2] = { m_destRect.x + m_destRect.w,		m_destRect.y + m_destRect.h };
+			m_points[1] = { m_destRect.x + m_destRect.w,	m_destRect.y };
+			m_points[2] = { m_destRect.x + m_destRect.w,	m_destRect.y + m_destRect.h };
 			m_points[3] = { m_destRect.x,					m_destRect.y + m_destRect.h };
 		}
 

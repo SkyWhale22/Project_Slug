@@ -49,6 +49,12 @@
     <Filter Include="Source Files\Utils">
       <UniqueIdentifier>{a5d62a00-58bf-4c0b-a091-d0e14d5bbd0c}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Header Files\CharacterStates">
+      <UniqueIdentifier>{fba39cec-ca01-4bcf-98d9-a8c9d52a5e55}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\CharacterStates\SpartanStates">
+      <UniqueIdentifier>{e8b2db48-346f-4cf6-b072-3d0f713199d7}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Sources\Core\Application.cpp">
@@ -98,6 +104,30 @@
     </ClCompile>
     <ClCompile Include="Sources\Utils\tinyxml2.cpp">
       <Filter>Source Files\Utils</Filter>
+    </ClCompile>
+    <ClCompile Include="SpartanStateMachine.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="CharacterStateBase.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="SpartanWalkState.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="SpartanIdleState.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Sources\CharacterStates\CharacterStateMachineBase.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="SpartanStateBase.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Sources\GameObjects\Weapons\AssultRifle.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Sources\GameObjects\Weapons\Bullet.cpp">
+      <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -151,6 +181,39 @@
     </ClInclude>
     <ClInclude Include="Includes\Utils\tinyxml2.h">
       <Filter>Header Files\Utils</Filter>
+    </ClInclude>
+    <ClInclude Include="Includes\CharacterStates\Spartan\SpartanIdleState.hpp">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Includes\CharacterStates\Spartan\SpartanStateMachine.hpp">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Includes\CharacterStates\Spartan\SpartanWalkState.hpp">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Includes\CharacterStates\SpartanStates\SpartanIdleState.hpp">
+      <Filter>Header Files\CharacterStates\SpartanStates</Filter>
+    </ClInclude>
+    <ClInclude Include="Includes\CharacterStates\SpartanStates\SpartanStateMachine.hpp">
+      <Filter>Header Files\CharacterStates\SpartanStates</Filter>
+    </ClInclude>
+    <ClInclude Include="Includes\CharacterStates\SpartanStates\SpartanWalkState.hpp">
+      <Filter>Header Files\CharacterStates\SpartanStates</Filter>
+    </ClInclude>
+    <ClInclude Include="Includes\CharacterStates\CharacterStateBase.hpp">
+      <Filter>Header Files\CharacterStates</Filter>
+    </ClInclude>
+    <ClInclude Include="Includes\CharacterStates\CharacterStateMachineBase.hpp">
+      <Filter>Header Files\CharacterStates</Filter>
+    </ClInclude>
+    <ClInclude Include="Includes\CharacterStates\SpartanStates\SpartanStateBase.hpp">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Includes\GameObjects\Weapons\AssultRifle.hpp">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Includes\GameObjects\Weapons\Bullet.hpp">
+      <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

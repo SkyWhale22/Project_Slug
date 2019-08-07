@@ -16,13 +16,6 @@ namespace Slug
 		// --- Member Variables ---
 		protected:
 			/* ---------- Animation Related -------------*/	
-			enum class AnimationType
-			{
-				kIdle,
-				kWalk,
-				kAttack,
-				kDie
-			};
 
 			struct Frame
 			{
@@ -64,6 +57,8 @@ namespace Slug
 
 			virtual void InitAnimation() = 0;
 			virtual void SetAnimation(int type) = 0;
+			void UpdateAnim(double deltaSeconds);
+
 		};
 	}
 }

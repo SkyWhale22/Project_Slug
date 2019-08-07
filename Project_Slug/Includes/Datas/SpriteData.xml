@@ -34,6 +34,22 @@
       <Die    frame = '0' posX = '0' posY = '270' centerX = '0' centerY = '0'/>
     </Animation>
   </Spartan>
+  
+  <Weapons>
+    <!-- Sprite path -->
+    <SpritePath>Resources/Sprites/Spartan.png</SpritePath>
+
+    <!-- Width and height size of sprite -->
+    <SpriteSize width = "32" height = "32"/>
+    <SpriteFrame>
+      <AssultRifle posX = '32' posY = '0' sizeX = '30' sizeY = '15' centerX = '29'  centerY = '22'/>
+      <MagnumPistol posX = '61' posY = '0' sizeX = '12' sizeY = '10' centerX = '29'  centerY = '22'/>
+      <Shotgun posX = '76' posY = '0' sizeX = '30' sizeY = '' centerX = ''  centerY = ''/>
+      <PlasmaPistol posX = '' posY = '' sizeX = '' sizeY = '' centerX = ''  centerY = ''/>
+      <PlasmaRifle posX = '' posY = '' sizeX = '' sizeY = '' centerX = ''  centerY = ''/>
+    </SpriteFrame>
+  </Weapons>
+
 </Body>
 
 

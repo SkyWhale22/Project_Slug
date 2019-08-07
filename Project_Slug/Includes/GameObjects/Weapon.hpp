@@ -12,18 +12,21 @@ namespace Slug
 
 		// ----- Member Functions -----
 		public:
-			Weapon();
-			Weapon(const Vector2& pos);
-			Weapon(float posX, float posY);
-			Weapon(const Weapon& instance);
+			//Weapon();
+			//Weapon(const Vector2& pos);
+			//Weapon(float posX, float posY);
+			//Weapon(const Weapon& instance);
 
-			~Weapon();
+			virtual ~Weapon() = 0 {};
 
 			// Inherited via GameObject
-			virtual void Initialize() override;
-			virtual void Update(double deltaSeconds) override;
-			virtual void Render(SDL_Renderer* const pRenderer) override;
-			virtual void SetTexture(const char* pSpritePath) override;
+			virtual void Initialize() final;
+			virtual void Update(double deltaSeconds) final;
+			virtual void Render(SDL_Renderer* const pRenderer) final;
+			//virtual void SetTexture(const char* pSpritePath) = 0;
+
+			virtual void Shoot() = 0;
+			virtual void Reload() = 0;
 
 			void UpdateDebugLine();
 			void FindDegreesToCursor(const Vector2& pos);

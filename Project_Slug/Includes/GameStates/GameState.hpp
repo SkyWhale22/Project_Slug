@@ -11,17 +11,24 @@
 
 namespace Slug
 {
+	namespace Core
+	{
+		class Application;
+	}
 	namespace GameStates
 	{
 		class GameStateMachine;
-
+		
+		
 		class GameState
 		{
 			// ----- Member Variables -----
+		private:
+			friend GameStateMachine;
+			friend Core::Application;
 		protected:
 			GameStateMachine* m_pStateMachine;
 
-		public:
 			enum class Type
 			{
 				kInvalid,

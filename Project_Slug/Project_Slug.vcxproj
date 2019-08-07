@@ -19,6 +19,8 @@
     </ProjectConfiguration>
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="CharacterStateBase.cpp" />
+    <ClCompile Include="Sources\CharacterStates\CharacterStateMachineBase.cpp" />
     <ClCompile Include="Sources\Core\Application.cpp" />
     <ClCompile Include="Sources\Core\Camera.cpp" />
     <ClCompile Include="Sources\Core\Main.cpp" />
@@ -26,6 +28,8 @@
     <ClCompile Include="Sources\GameObjects\GameObject.cpp" />
     <ClCompile Include="Sources\GameObjects\Spartan.cpp" />
     <ClCompile Include="Sources\GameObjects\Weapon.cpp" />
+    <ClCompile Include="Sources\GameObjects\Weapons\AssultRifle.cpp" />
+    <ClCompile Include="Sources\GameObjects\Weapons\Bullet.cpp" />
     <ClCompile Include="Sources\GameStates\GameState.cpp" />
     <ClCompile Include="Sources\GameStates\GameStateMachine.cpp" />
     <ClCompile Include="Sources\GameStates\InGameScene.cpp" />
@@ -35,8 +39,21 @@
     <ClCompile Include="Sources\Utils\SquirrelRNG.cpp" />
     <ClCompile Include="Sources\Utils\tinyxml2.cpp" />
     <ClCompile Include="Sources\Utils\Transform.cpp" />
+    <ClCompile Include="SpartanIdleState.cpp" />
+    <ClCompile Include="SpartanStateBase.cpp" />
+    <ClCompile Include="SpartanStateMachine.cpp" />
+    <ClCompile Include="SpartanWalkState.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="Includes\CharacterStates\CharacterStateBase.hpp" />
+    <ClInclude Include="Includes\CharacterStates\CharacterStateMachineBase.hpp" />
+    <ClInclude Include="Includes\CharacterStates\SpartanStates\SpartanIdleState.hpp" />
+    <ClInclude Include="Includes\CharacterStates\SpartanStates\SpartanStateBase.hpp" />
+    <ClInclude Include="Includes\CharacterStates\SpartanStates\SpartanStateMachine.hpp" />
+    <ClInclude Include="Includes\CharacterStates\SpartanStates\SpartanWalkState.hpp" />
+    <ClInclude Include="Includes\CharacterStates\Spartan\SpartanIdleState.hpp" />
+    <ClInclude Include="Includes\CharacterStates\Spartan\SpartanStateMachine.hpp" />
+    <ClInclude Include="Includes\CharacterStates\Spartan\SpartanWalkState.hpp" />
     <ClInclude Include="Includes\Core\Application.hpp" />
     <ClInclude Include="Includes\Core\Camera.hpp" />
     <ClInclude Include="Includes\Core\Singleton.hpp" />
@@ -44,6 +61,8 @@
     <ClInclude Include="Includes\GameObjects\GameObject.hpp" />
     <ClInclude Include="Includes\GameObjects\Spartan.hpp" />
     <ClInclude Include="Includes\GameObjects\Weapon.hpp" />
+    <ClInclude Include="Includes\GameObjects\Weapons\AssultRifle.hpp" />
+    <ClInclude Include="Includes\GameObjects\Weapons\Bullet.hpp" />
     <ClInclude Include="Includes\GameStates\GameState.hpp" />
     <ClInclude Include="Includes\GameStates\GameStateMachine.hpp" />
     <ClInclude Include="Includes\GameStates\InGameScene.hpp" />
