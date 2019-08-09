@@ -10,6 +10,11 @@ namespace Slug
 		private:
 			SDL_Point m_points[4];
 
+		protected:
+			SDL_Point m_center;
+			Vector2 m_resourceSize;
+			Vector2 m_renderSize;
+
 		// ----- Member Functions -----
 		public:
 			//Weapon();
@@ -20,9 +25,9 @@ namespace Slug
 			virtual ~Weapon() = 0 {};
 
 			// Inherited via GameObject
-			virtual void Initialize() final;
+			virtual void Initialize() = 0;
 			virtual void Update(double deltaSeconds) final;
-			virtual void Render(SDL_Renderer* const pRenderer) final;
+			virtual void Render(SDL_Renderer* const pRenderer) = 0;
 			//virtual void SetTexture(const char* pSpritePath) = 0;
 
 			virtual void Shoot() = 0;

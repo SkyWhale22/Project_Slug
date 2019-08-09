@@ -55,6 +55,9 @@
     <Filter Include="Header Files\CharacterStates\SpartanStates">
       <UniqueIdentifier>{e8b2db48-346f-4cf6-b072-3d0f713199d7}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Source Files\GameObjects\Weapons">
+      <UniqueIdentifier>{4c7e1e95-c452-43e5-9c3e-2b5aca78c743}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Sources\Core\Application.cpp">
@@ -124,10 +127,10 @@
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="Sources\GameObjects\Weapons\AssultRifle.cpp">
-      <Filter>Source Files</Filter>
+      <Filter>Source Files\GameObjects\Weapons</Filter>
     </ClCompile>
     <ClCompile Include="Sources\GameObjects\Weapons\Bullet.cpp">
-      <Filter>Source Files</Filter>
+      <Filter>Source Files\GameObjects\Weapons</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

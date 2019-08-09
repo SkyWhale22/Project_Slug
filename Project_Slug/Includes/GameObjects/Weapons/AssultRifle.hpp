@@ -14,9 +14,9 @@ namespace Slug
 			AssultRifle(const AssultRifle& instance);
 
 			// Inherited via GameObject
-			//virtual void Initialize() override;
+			virtual void Initialize() override;
 			//virtual void Update(double deltaSeconds) override;
-			//virtual void Render(SDL_Renderer* const pRenderer) override;
+			virtual void Render(SDL_Renderer* const pRenderer) override;
 			//virtual void SetTexture(const char* pSpritePath) override;
 
 			// Inherited via Weapon

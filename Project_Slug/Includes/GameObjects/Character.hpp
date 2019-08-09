@@ -53,7 +53,7 @@ namespace Slug
 			virtual void Initialize() = 0;
 			virtual void Update(double deltaSeconds) = 0;
 			virtual void Render(SDL_Renderer* const pRenderer) = 0;
-			virtual void SetTexture(const char* pSpritePath) = 0;
+			//virtual void SetTexture(const char* pSpritePath) = 0;
 
 			virtual void InitAnimation() = 0;
 			virtual void SetAnimation(int type) = 0;

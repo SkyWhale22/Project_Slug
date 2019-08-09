@@ -124,9 +124,6 @@ namespace Slug
 		//--------------------------------------------------------------------
 		void Weapon::Render(SDL_Renderer* const pRenderer)
 		{
-			Vector2 camera = Core::Camera::GetInstance()->GetPosition();
-			Vector2 mouse = Managers::MouseManager::GetInstance()->GetMousePosition();
-
 #if DEBUG_POSITION 
 			// --- Debug line ---
 			SDL_Point debugRect[4];
@@ -138,17 +135,6 @@ namespace Slug
 			SDL_RenderDrawLines(pRenderer, debugRect, 4);
 			SDL_RenderDrawLine(pRenderer, debugRect[3].x, debugRect[3].y, debugRect[0].x, debugRect[0].y);
 #endif
-			const float transformX = GetTransform().GetPositionX() - camera.m_x;
-			const float mouseX = Managers::MouseManager::GetInstance()->GetMousePosition().m_x;
-
-			SDL_RendererFlip renderFlip = (transformX < mouseX) ? SDL_RendererFlip::SDL_FLIP_NONE : SDL_RendererFlip::SDL_FLIP_VERTICAL;
-			
-			SDL_Rect dest = { (int)m_transform.GetPositionX() - 5 - (int)camera.m_x, (int)m_transform.GetPositionY() - 5 - (int)camera.m_y, 10, 10 };
-			
-			m_resourceRect = { 32, 0, 30, 15 };
-			SDL_Point center = { 29, 22 };
-			// --- Render Sprite ---
-			SDL_RenderCopyEx(pRenderer, m_pTexture, &m_resourceRect, &m_destRect, m_transform.GetAngle(), &center, renderFlip);
 
 #if DEBUG_POSITION
 			// --- Actual Point ---
