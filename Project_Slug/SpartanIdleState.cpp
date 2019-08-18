@@ -20,7 +20,7 @@ namespace Slug
 		void SpartanIdleState::OnEnter(Character& obj)
 		{
 			obj.SetAnimation((int)AnimationType::kIdle);
-			std::cout << "Entered idle state\n";
+			//std::cout << "Entered idle state\n";
 		}
 
 		void SpartanIdleState::OnUpdate(Character& obj, double deltaSeconds)

@@ -5,14 +5,13 @@ namespace Slug
 {
 	namespace Objects
 	{
-		class AssultRifle : public Weapon
+		class Magnum : public Weapon
 		{
 		public:
-			AssultRifle();
-			AssultRifle(const Vector2& pos);
-			AssultRifle(float posX, float posY);
-			AssultRifle(const AssultRifle& instance);
-			~AssultRifle();
+			Magnum();
+			Magnum(const Vector2& pos);
+			Magnum(float posX, float posY);
+			Magnum(const Magnum& instance);
 
 			// Inherited via GameObject
 			virtual void Initialize() override;

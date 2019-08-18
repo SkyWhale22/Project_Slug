@@ -27,9 +27,7 @@ namespace Slug
 
 			//virtual void CheckState() = 0;
 			virtual void Update(Objects::Character& obj, double deltaSeconds) = 0;
-			virtual void Render(SDL_Renderer* const pRenderer) = 0;
 			virtual void Input(Objects::Character& obj, const SDL_Event& event) = 0;
-			virtual void SetDesiredState(CharacterStateBase::StateType newState) = 0;
 		};
 
 

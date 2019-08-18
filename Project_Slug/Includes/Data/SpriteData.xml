@@ -22,7 +22,7 @@
     
     <!--
       frame   : total number of sprites of a certain animation.
-      posX    : x position of where the sprite starts.
+      posX    : x position of where the sprite s tarts.
       poxY    : y position of where the sprite starts.
       centerX : x position which destRect will be rotated 
       centerY : y position which destRect will be rotated 
@@ -40,16 +40,28 @@
     <SpritePath>Resources/Sprites/Spartan.png</SpritePath>
 
     <!-- Width and height size of sprite -->
-    <SpriteSize width = "32" height = "32"/>
     <SpriteFrame>
-      <AssultRifle posX = '32' posY = '0' sizeX = '30' sizeY = '15' centerX = '29'  centerY = '22'/>
-      <MagnumPistol posX = '61' posY = '0' sizeX = '12' sizeY = '10' centerX = '29'  centerY = '22'/>
-      <Shotgun posX = '76' posY = '0' sizeX = '30' sizeY = '' centerX = ''  centerY = ''/>
+      <AssultRifle  posX = '32' posY = '0' sizeX = '30' sizeY = '15' centerX = '29'  centerY = '22'/>
+      <Magnum       posX = '62' posY = '0' sizeX = '12' sizeY = '10' centerX = '18'  centerY = '28'/>
+      <Shotgun      posX = '76' posY = '0' sizeX = '30' sizeY = '' centerX = ''  centerY = ''/>
       <PlasmaPistol posX = '' posY = '' sizeX = '' sizeY = '' centerX = ''  centerY = ''/>
-      <PlasmaRifle posX = '' posY = '' sizeX = '' sizeY = '' centerX = ''  centerY = ''/>
+      <PlasmaRifle  posX = '' posY = '' sizeX = '' sizeY = '' centerX = ''  centerY = ''/>
     </SpriteFrame>
   </Weapons>
 
+  <Bullets>
+    <!-- Sprite Path -->
+    <SpritePath>Resources/Sprites/Bullets.png</SpritePath>
+
+    <BulletFrame>
+      <AssultRifle  posX = ''   posY = '0'  sizeX = ''  sizeY = '' centerX = ''  centerY = ''/>
+      <Magnum       posX = '168'  posY = '31' sizeX = '7'  sizeY = '12' centerX = '4'  centerY = '6'/>
+      <Shotgun      posX = ''   posY = ''  sizeX = ''  sizeY = '' centerX = ''  centerY = ''/>
+      <PlasmaPistol posX = ''     posY = ''   sizeX = ''    sizeY = '' centerX = ''  centerY = ''/>
+      <PlasmaRifle  posX = ''     posY = ''   sizeX = ''    sizeY = '' centerX = ''  centerY = ''/>
+    </BulletFrame>
+  </Bullets>
+  
 </Body>
 
 

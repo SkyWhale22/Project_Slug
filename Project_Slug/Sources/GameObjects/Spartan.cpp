@@ -1,15 +1,37 @@
+//-----------------------------------------------------------------
+// Core
+//-----------------------------------------------------------------
 #include <iostream>
-#include <SDL_image.h>
-
 #include "Core/Application.hpp"
+#include "Core/Camera.hpp"
+
+//-----------------------------------------------------------------
+// Objects
+//-----------------------------------------------------------------
 #include "GameObjects/Spartan.hpp"
 #include "GameObjects/Weapons/AssultRifle.hpp"
+#include "GameObjects/Weapons/Magnum.hpp"
+#include "GameObjects/Weapons/Bullet.hpp"
+
+//-----------------------------------------------------------------
+// Managers
+//-----------------------------------------------------------------
 #include "Managers/MouseManager.hpp"
-#include "Core/Camera.hpp"
-//#include "CharacterStates/SpartanStates/SpartanStateMachine.hpp"
+
+//-----------------------------------------------------------------
+// States
+//-----------------------------------------------------------------
 #include "CharacterStates/CharacterStateBase.hpp"
-#include "CharacterStates/SpartanStates/SpartanIdleState.hpp"
-#include "CharacterStates/SpartanStates/SpartanWalkState.hpp"
+#include "CharacterStates/SpartanStates/SpartanStateMachine.hpp"
+
+//-----------------------------------------------------------------
+// Utils
+//-----------------------------------------------------------------
+#include "Utils/ObjectPool.h"
+
+
+//#include "CharacterStates/SpartanStates/SpartanIdleState.hpp"
+//#include "CharacterStates/SpartanStates/SpartanWalkState.hpp"
 
 namespace Slug
 {
@@ -17,8 +39,8 @@ namespace Slug
 	{
 		Spartan::Spartan()
 			: m_pWeapon(new AssultRifle(0, 0))
-			, m_pCurrentState(new CharacterStates::SpartanIdleState())
-			//, m_pStateMachine(new CharacterStates::SpartanStateMachine())
+			, m_pStateMachine(new CharacterStates::SpartanStateMachine())
+			//, m_pCurrentState(new CharacterStates::SpartanIdleState())
 		{
 			m_transform = Utils::Transform(0, 0, 0);
 
@@ -26,8 +48,9 @@ namespace Slug
 		}
 
 		Spartan::Spartan(float posX, float posY)
-			: m_pWeapon(new AssultRifle(posX, posY))
-			, m_pCurrentState(new CharacterStates::SpartanIdleState())
+			: m_pWeapon(new Magnum(posX, posY))
+			, m_pStateMachine(new CharacterStates::SpartanStateMachine())
+			//, m_pCurrentState(new CharacterStates::SpartanIdleState())
 		{
 			m_transform = Utils::Transform(posX, posY, 0);
 
@@ -35,8 +58,9 @@ namespace Slug
 		}
 
 		Spartan::Spartan(const Vector2& initPos)
-			: m_pWeapon(new AssultRifle(initPos))
-			, m_pCurrentState(new CharacterStates::SpartanIdleState())
+			: m_pWeapon(new Magnum(initPos))
+			, m_pStateMachine(new CharacterStates::SpartanStateMachine())
+			//, m_pCurrentState(new CharacterStates::SpartanIdleState())
 		{
 			m_transform = Utils::Transform(initPos, 0);
 			
@@ -48,8 +72,11 @@ namespace Slug
 			delete m_pWeapon;
 			m_pWeapon = nullptr;
 
-			delete m_pCurrentState;
-			m_pCurrentState = nullptr;
+			delete m_pStateMachine;
+			m_pStateMachine = nullptr;
+
+			delete m_pBulletPool;
+			m_pStateMachine = nullptr;
 
 			SDL_DestroyTexture(m_pTexture);
 		}
@@ -65,8 +92,13 @@ namespace Slug
 			m_destRect = { (int)(m_transform.GetPositionX() - (s_kSpriteWidth * 0.5)), (int)(m_transform.GetPositionY() - (s_kSpriteHeight * 0.5)), s_kSpriteWidth, s_kSpriteHeight };
 
 			//- XML reader
-			m_doc.LoadFile("Includes/Datas/SpriteData.xml");
+			m_doc.LoadFile("Includes/Data/SpriteData.xml");
 			m_pRoot = m_doc.RootElement();
+
+			// Generate bullet pool
+			m_pBulletPool = new Utils::TMemoryPool<Bullet>();
+			m_pBulletPool->Create();
+
 
 			//- Initialized sprite, and animation
 			InitAnimation();
@@ -74,7 +106,7 @@ namespace Slug
 
 		void Spartan::Update(double deltaSeconds)
 		{
-			m_pCurrentState->OnUpdate(*this, deltaSeconds);
+			m_pStateMachine->Update(*this, deltaSeconds);
 					   			 		  
 			Vector2 cameraPos = Core::Camera::GetInstance()->GetPosition();
 
@@ -96,6 +128,16 @@ namespace Slug
 			m_pWeapon->GetTransform().SetPosition(GetTransform().GetPosition());
 			m_pWeapon->FindDegreesToCursor(Managers::MouseManager::GetInstance()->GetMousePosition());
 			m_pWeapon->Update(deltaSeconds);
+
+			m_pBulletPool->CollectUnusedObject();
+
+			Bullet* pNode = m_pBulletPool->GetFreeListHead();
+			while (pNode)
+			{
+				pNode->Update(deltaSeconds);
+				pNode = pNode->GetNext();
+			}
+
 		}
 
 		 //---------------------------------------------------------------------------
@@ -111,7 +153,7 @@ namespace Slug
 #if DEBUG_COLLIDER
 			// --- Position to render ---
 			SDL_SetRenderDrawColor(pRenderer, 255, 0, 0, 255);
-			SDL_RenderFillRect(pRenderer, &m_destUpRect);
+			SDL_RenderFillRect(pRenderer, &m_destRect);
 #endif
 			const float transformX	= GetTransform().GetPositionX() - cameraPos.m_x;
 			const float mouseX = Managers::MouseManager::GetInstance()->GetMousePosition().m_x;
@@ -132,6 +174,16 @@ namespace Slug
 			SDL_RenderFillRect(pRenderer, &dest);
 #endif	
 			m_pWeapon->Render(pRenderer);
+
+			// ----- Render Bullets -----
+			Bullet* pNode = m_pBulletPool->GetInUseListHead();
+
+			while (pNode)
+			{
+				pNode->SetBulletData("Magnum");
+				pNode->Render(pRenderer);
+				pNode = pNode->GetNext();
+			}
 		}
 
 		void Spartan::InitAnimation()
@@ -223,15 +275,36 @@ namespace Slug
 
 		void Spartan::Input(const SDL_Event& event)
 		{
-			SpartanState* pState = m_pCurrentState->OnHandleInput(*this, event);
+			m_pStateMachine->Input(*this, event);
 
-			if (pState != nullptr)
+#if DEBUG_WEAPON_SWAP
+			if (event.type == SDL_KEYDOWN && event.key.repeat == 0)
 			{
-				delete m_pCurrentState;
-				m_pCurrentState = pState;
+				switch (event.key.keysym.sym)
+				{
+				case SDLK_1:
+				{
+					delete m_pWeapon;
+					m_pWeapon = new Magnum(this->GetTransform().GetPosition());
+				}
+				break;
+				case SDLK_2:
+				{
+					delete m_pWeapon;
+					m_pWeapon = new AssultRifle(this->GetTransform().GetPosition());
+				}
+				break;
+				}
 			}
-			
-			m_pCurrentState->OnEnter(*this);
+
+ 			if(event.type == SDL_MOUSEBUTTONDOWN)
+			{
+				Bullet* pBullet = m_pBulletPool->Get();
+
+				pBullet->GetTransform().SetPosition(this->GetTransform().GetPosition());
+				pBullet->PrintStatus();
+			}
+#endif
 		}
 	}
 }

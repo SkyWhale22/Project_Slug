@@ -24,8 +24,9 @@ constexpr static size_t s_kTotalAnimSpartan = 4;
 // Debug
 //--------------------------------------------------
 #define DEBUG_POSITION	false
-#define DEBUG_CAMERA	false
+#define DEBUG_CAMERA	true
 #define DEBUG_COLLIDER	false
+#define DEBUG_WEAPON_SWAP	true
 
 //--------------------------------------------------
 // Parameters

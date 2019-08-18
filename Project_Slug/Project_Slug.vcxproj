@@ -30,6 +30,7 @@
     <ClCompile Include="Sources\GameObjects\Weapon.cpp" />
     <ClCompile Include="Sources\GameObjects\Weapons\AssultRifle.cpp" />
     <ClCompile Include="Sources\GameObjects\Weapons\Bullet.cpp" />
+    <ClCompile Include="Sources\GameObjects\Weapons\Magnum.cpp" />
     <ClCompile Include="Sources\GameStates\GameState.cpp" />
     <ClCompile Include="Sources\GameStates\GameStateMachine.cpp" />
     <ClCompile Include="Sources\GameStates\InGameScene.cpp" />
@@ -63,12 +64,14 @@
     <ClInclude Include="Includes\GameObjects\Weapon.hpp" />
     <ClInclude Include="Includes\GameObjects\Weapons\AssultRifle.hpp" />
     <ClInclude Include="Includes\GameObjects\Weapons\Bullet.hpp" />
+    <ClInclude Include="Includes\GameObjects\Weapons\Magnum.hpp" />
     <ClInclude Include="Includes\GameStates\GameState.hpp" />
     <ClInclude Include="Includes\GameStates\GameStateMachine.hpp" />
     <ClInclude Include="Includes\GameStates\InGameScene.hpp" />
     <ClInclude Include="Includes\GameStates\MainTitleScene.hpp" />
     <ClInclude Include="Includes\Managers\MouseManager.hpp" />
     <ClInclude Include="Includes\UI\UIButton.hpp" />
+    <ClInclude Include="Includes\Utils\ObjectPool.h" />
     <ClInclude Include="Includes\Utils\SquirrelRNG.h" />
     <ClInclude Include="Includes\Utils\tinyxml2.h" />
     <ClInclude Include="Includes\Utils\Transform.hpp" />

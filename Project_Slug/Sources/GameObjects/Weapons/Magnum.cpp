@@ -4,7 +4,6 @@
 #include <assert.h>
 #include "Core/Application.hpp"
 #include "Core/Camera.hpp"
-#include <memory.h>
 
 //-----------------------------------------------------------------
 // Utils
@@ -14,7 +13,7 @@
 //-----------------------------------------------------------------
 // Objects
 //-----------------------------------------------------------------
-#include "GameObjects/Weapons/AssultRifle.hpp"
+#include "GameObjects/Weapons/Magnum.hpp"
 
 using tinyxml2::XMLDocument;
 using tinyxml2::XMLElement;
@@ -26,35 +25,31 @@ namespace Slug
 		//--------------------------------------------------------------------
 		// Basic constructor
 		//--------------------------------------------------------------------
-		AssultRifle::AssultRifle()
+		Magnum::Magnum()
 		{
 			m_transform = Utils::Transform(0, 0, 0);
-			
+
 			Initialize();
 		}
 
-		AssultRifle::AssultRifle(const Vector2& pos)
+		Magnum::Magnum(const Vector2& pos)
 		{
 			m_transform = Utils::Transform(pos, 0);
 
 			Initialize();
 		}
 
-		AssultRifle::AssultRifle(float posX, float posY)
+		Magnum::Magnum(float posX, float posY)
 		{
 			m_transform = Utils::Transform(posX, posY, 0);
 
 			Initialize();
 		}
 
-		AssultRifle::~AssultRifle()
-		{
-		}
-
 		//--------------------------------------------------------------------
 		// Basic constructor
 		//--------------------------------------------------------------------
-		AssultRifle::AssultRifle(const AssultRifle& instance)
+		Magnum::Magnum(const Magnum& instance)
 		{
 			m_transform = instance.m_transform;
 			m_destRect = instance.m_destRect;
@@ -62,60 +57,55 @@ namespace Slug
 			Initialize();
 		}
 
-		void AssultRifle::Initialize()
+		void Magnum::Initialize()
 		{
 			// Call parent class's initialization
 			Weapon::Initialize();
 
 			Vector2 camera = Core::Camera::GetInstance()->GetPosition();
-			m_destRect = { (int)m_transform.GetPositionX() - (int)camera.m_x, (int)m_transform.GetPositionY() - (int)camera.m_y, 120, 44 };
+			m_destRect = { (int)m_transform.GetPositionX() - (int)camera.m_x, (int)m_transform.GetPositionY() - (int)camera.m_y, 55, 55 };
 
 			XMLDocument	m_doc;
 			m_doc.LoadFile("Includes/Data/SpriteData.xml");
-			
+
 			XMLElement* m_pRoot = m_doc.RootElement();
 			XMLElement* pWeaponData = m_pRoot->FirstChildElement("Weapons");
 			assert(pWeaponData != nullptr && "pWeaponData was nullptr");
 
-			XMLElement* pARData = pWeaponData->FirstChildElement("SpriteFrame")->FirstChildElement("AssultRifle");
-			assert(pARData != nullptr && "pARData was nullptr");
+			XMLElement* pMagnumData = pWeaponData->FirstChildElement("SpriteFrame")->FirstChildElement("Magnum");
+			assert(pMagnumData != nullptr && "pMagnum was nullptr");
 
-			//m_resourceSize = { (float)pARData->IntAttribute("sizeX"), (float)pARData->IntAttribute("sizeY") };
 			m_resourceRect =
 			{ 
-			(int)pARData->IntAttribute("posX"),
-			(int)pARData->IntAttribute("posY"),
-			(int)pARData->IntAttribute("sizeX"),
-			(int)pARData->IntAttribute("sizeY")
+			(int)pMagnumData->IntAttribute("posX"),
+			(int)pMagnumData->IntAttribute("posY"),
+			(int)pMagnumData->IntAttribute("sizeX"),
+			(int)pMagnumData->IntAttribute("sizeY")
 			};
 
 			// Search center position wherer the sprite will be rendererd.
-			m_center = { (int)pARData->IntAttribute("centerX"), (int)pARData->IntAttribute("centerY") };
+			m_center = { (int)pMagnumData->IntAttribute("centerX"), (int)pMagnumData->IntAttribute("centerY") };
 		}
 
-		void AssultRifle::Update(double deltaSeconds)
+		void Magnum::Update(double deltaSeconds)
 		{
-			Vector2 camera = Core::Camera::GetInstance()->GetPosition();
-
-
 			// Calculate destination rect.
+			Vector2 camera = Core::Camera::GetInstance()->GetPosition();
 			m_destRect.x = (int)m_transform.GetPositionX() - (int)camera.m_x - m_center.x;
 			m_destRect.y = (int)m_transform.GetPositionY() - (int)camera.m_y - m_center.y;
-
 
 #if DEBUG_POSITION
 			Weapon::Update(deltaSeconds);
 #endif
 		}
 
-		void AssultRifle::Render(SDL_Renderer* const pRenderer)
+		void Magnum::Render(SDL_Renderer* const pRenderer)
 		{
 			// Calling Render() from parent class(Weapon)
 			Weapon::Render(pRenderer);
 
 			// Get vector position from the camera and mouse
 			Vector2 camera = Core::Camera::GetInstance()->GetPosition();
-			Vector2 mouse = Managers::MouseManager::GetInstance()->GetMousePosition();
 
 			const float transformX = GetTransform().GetPositionX() - camera.m_x;
 			const float mouseX = Managers::MouseManager::GetInstance()->GetMousePosition().m_x;
@@ -125,14 +115,14 @@ namespace Slug
 
 			// After all, render the sprite
 			SDL_RenderCopyEx(pRenderer, m_pTexture, &m_resourceRect, &m_destRect, m_transform.GetAngle(), &m_center, renderFlip);
-
 		}
 
-		void AssultRifle::Shoot()
+		void Magnum::Shoot()
 		{
+			
 		}
 
-		void AssultRifle::Reload()
+		void Magnum::Reload()
 		{
 		}
 	}

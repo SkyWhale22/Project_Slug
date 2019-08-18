@@ -58,6 +58,9 @@
     <Filter Include="Source Files\GameObjects\Weapons">
       <UniqueIdentifier>{4c7e1e95-c452-43e5-9c3e-2b5aca78c743}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Header Files\GameObjects\Weapons">
+      <UniqueIdentifier>{bd3642c8-cddf-45aa-91d8-49c077978cbb}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Sources\Core\Application.cpp">
@@ -132,6 +135,9 @@
     <ClCompile Include="Sources\GameObjects\Weapons\Bullet.cpp">
       <Filter>Source Files\GameObjects\Weapons</Filter>
     </ClCompile>
+    <ClCompile Include="Sources\GameObjects\Weapons\Magnum.cpp">
+      <Filter>Source Files\GameObjects\Weapons</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Includes\GameStates\MainTitleScene.hpp">
@@ -169,9 +175,6 @@
     </ClInclude>
     <ClInclude Include="Includes\Utils\Transform.hpp">
       <Filter>Header Files\Utils</Filter>
-    </ClInclude>
-    <ClInclude Include="Includes\GameObjects\Weapon.hpp">
-      <Filter>Header Files\GameObjects</Filter>
     </ClInclude>
     <ClInclude Include="Includes\Core\Camera.hpp">
       <Filter>Header Files\Core</Filter>
@@ -213,9 +216,18 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="Includes\GameObjects\Weapons\AssultRifle.hpp">
-      <Filter>Header Files</Filter>
+      <Filter>Header Files\GameObjects\Weapons</Filter>
     </ClInclude>
     <ClInclude Include="Includes\GameObjects\Weapons\Bullet.hpp">
+      <Filter>Header Files\GameObjects\Weapons</Filter>
+    </ClInclude>
+    <ClInclude Include="Includes\GameObjects\Weapons\Magnum.hpp">
+      <Filter>Header Files\GameObjects\Weapons</Filter>
+    </ClInclude>
+    <ClInclude Include="Includes\GameObjects\Weapon.hpp">
+      <Filter>Header Files\GameObjects\Weapons</Filter>
+    </ClInclude>
+    <ClInclude Include="Includes\Utils\ObjectPool.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>

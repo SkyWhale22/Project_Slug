@@ -19,6 +19,7 @@ namespace Slug
 			SDL_Rect		m_destRect;
 			SDL_Rect		m_resourceRect;
 			SDL_Texture*	m_pTexture;
+			SDL_Point		m_center;
 			Utils::Transform m_transform;
 
 			// Currently Not being used.

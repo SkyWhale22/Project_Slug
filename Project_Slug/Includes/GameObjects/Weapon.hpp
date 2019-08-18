@@ -1,19 +1,19 @@
 #pragma once
+#include <memory>
 #include "GameObjects/GameObject.hpp"
+
 namespace Slug
 {
 	namespace Objects
 	{
+		class Bullet;
+
 		class Weapon : public GameObject
 		{
 		// ----- Member Variables -----
 		private:
 			SDL_Point m_points[4];
-
 		protected:
-			SDL_Point m_center;
-			Vector2 m_resourceSize;
-			Vector2 m_renderSize;
 
 		// ----- Member Functions -----
 		public:
@@ -26,7 +26,7 @@ namespace Slug
 
 			// Inherited via GameObject
 			virtual void Initialize() = 0;
-			virtual void Update(double deltaSeconds) final;
+			virtual void Update(double deltaSeconds) = 0;
 			virtual void Render(SDL_Renderer* const pRenderer) = 0;
 			//virtual void SetTexture(const char* pSpritePath) = 0;
 

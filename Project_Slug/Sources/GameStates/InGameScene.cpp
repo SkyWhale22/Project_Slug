@@ -9,9 +9,10 @@
 #include "Core/Camera.hpp"
 
 //-----------------------------------------------------------------
-// UI
+// Game Objects
 //-----------------------------------------------------------------
 #include "GameObjects/Spartan.hpp"
+#include "GameObjects/Weapons/Bullet.hpp"
 
 namespace Slug
 {
@@ -22,13 +23,18 @@ namespace Slug
 		//------------------------------------------------------
 		InGameScene::InGameScene()
 			: m_pPlayer(new Objects::Spartan(640, 360))
+			, m_pTestBullet(new Objects::Bullet(300, 300))
 		{
+			m_pTestBullet->SetBulletData("Magnum");
 		}
 
 		InGameScene::~InGameScene()
 		{
 			delete m_pPlayer;
 			m_pPlayer = nullptr;
+
+			delete m_pTestBullet;
+			m_pTestBullet = nullptr;
 		}
 
 		void InGameScene::OnEnter(GameStateMachine* pStateMachine)
@@ -70,7 +76,7 @@ namespace Slug
 				m_pPlayer->Input(event);
 			}
 
-			if (event.type == SDL_KEYUP)
+			if (event.type == SDL_KEYUP || event.type == SDL_MOUSEBUTTONDOWN)
 			{
 				m_pPlayer->Input(event);
 			}
@@ -101,6 +107,7 @@ namespace Slug
 
 
 			m_pPlayer->Render(pRenderer);
+			m_pTestBullet->Render(pRenderer);
 #if DEBUG_CAMERA
 			Core::Camera::GetInstance()->DrawDebug(pRenderer);
 #endif

@@ -5,23 +5,33 @@ namespace Slug
 	namespace CharacterStates
 	{
 		class CharacterStateBase;
+		class SpartanStateMachine;
 	}
-	//class CharacterStates::SpartanStateMachine;
+
+	namespace Utils
+	{
+		template <class Type>
+		class TMemoryPool;
+	}
 
 	namespace Objects
 	{
 		class Weapon;
+		class Bullet;
 
 		class Spartan : public Character
 		{
 		private:
-			//using SpartanStateMachine = CharacterStates::SpartanStateMachine;
-			using SpartanState = CharacterStates::CharacterStateBase;
+			using SpartanStateMachine = CharacterStates::SpartanStateMachine;
+			//using SpartanState = CharacterStates::CharacterStateBase;
 			friend class SpartanStateBase;
 
+
 			Weapon* m_pWeapon;
-			//SpartanStateMachine* m_pStateMachine;
-			SpartanState* m_pCurrentState;
+			SpartanStateMachine* m_pStateMachine;
+			//SpartanState* m_pCurrentState;
+			Utils::TMemoryPool<Bullet>* m_pBulletPool;
+
 
 		public:
 			Spartan();

@@ -93,10 +93,6 @@ namespace Slug
 		-------------------------------------------------------------------**/
 		void Weapon::Initialize()
 		{
-			Vector2 camera = Core::Camera::GetInstance()->GetPosition();
-
-			m_destRect = { (int)m_transform.GetPositionX() - (int)camera.m_x, (int)m_transform.GetPositionY()- (int)camera.m_x, 120, 44 };
-
 			SetTexture("Resources/Sprites/Spartan.png");
 #if DEBUG_COLLIDER
 			UpdateDebugLine();
@@ -109,11 +105,9 @@ namespace Slug
 		//--------------------------------------------------------------------
 		void Weapon::Update(double deltaSeconds)
 		{
-			Vector2 camera = Core::Camera::GetInstance()->GetPosition();
-			m_destRect.x = (int)m_transform.GetPositionX() - (int)camera.m_x - 29;
-			m_destRect.y = (int)m_transform.GetPositionY() - (int)camera.m_y - 22;
-			
+#if DEBUG_POSITION
 			UpdateDebugLine();
+#endif
 		}
 
 		//--------------------------------------------------------------------
@@ -139,7 +133,7 @@ namespace Slug
 #if DEBUG_POSITION
 			// --- Actual Point ---
 			SDL_SetRenderDrawColor(pRenderer, 255, 0, 0, 255);
-			SDL_RenderFillRect(pRenderer, &dest);
+			SDL_RenderFillRect(pRenderer, &m_destRect);
 #endif
 		}
 

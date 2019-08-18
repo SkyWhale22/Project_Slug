@@ -12,6 +12,7 @@ namespace Slug
 	{
 		class GameObject;
 		class Spartan;
+		class Bullet;
 	}
 
 	namespace GameStates
@@ -21,7 +22,7 @@ namespace Slug
 			// ----- Member Variables -----
 		private:
 			Objects::Spartan* m_pPlayer;
-
+			Objects::Bullet* m_pTestBullet;
 
 			// ----- Member Functions -----
 		public:
