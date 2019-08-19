@@ -41,10 +41,10 @@ namespace Slug
 		// Very very very very simple version of templated memory pool
 		// TODO: 
 		template <class Type>
-		class TMemoryPool
+		class TObjectPool
 		{
 		private:
-			constexpr static size_t s_kMaxSize = 100;
+			constexpr static size_t s_kMaxSize = 32;
 			int m_freeIndex;
 
 			Type m_objects[s_kMaxSize];
@@ -52,14 +52,14 @@ namespace Slug
 			Type* m_inUseListHead;
 
 		public:
-			TMemoryPool()
+			TObjectPool()
 				: m_freeIndex(-1)
 			{
 				static_assert(std::is_base_of<IPoolable<Type>, Type>::value, "Must be poolable object");
 				m_freeListHead = &m_objects[0];
 			}
 
-			~TMemoryPool()
+			~TObjectPool()
 			{
 			}
 

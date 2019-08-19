@@ -24,13 +24,13 @@ namespace Slug
 			void SetPosition(type x, type y);
 			void SetPosition(Vector2 pos);
 
-			inline bool IsClicked() const { return m_isClicked; }
-			inline void SetClicked(bool set) { m_isClicked = set; }
+			bool IsClicked() const { return m_isClicked; }
+			void SetClicked(bool set) { m_isClicked = set; }
 			void PrintClikedPos();
-			inline Vector2 GetMousePosition() const { return m_mousePosition; }
+			Vector2 GetMousePosition() const { return m_mousePosition; }
 		};
 		template<typename type>
-		inline void MouseManager::SetPosition(type x, type y)
+		void MouseManager::SetPosition(type x, type y)
 		{
 			m_mousePosition.m_x = (float)x;
 			m_mousePosition.m_y = (float)y;

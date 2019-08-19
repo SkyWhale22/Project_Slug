@@ -138,6 +138,9 @@
     <ClCompile Include="Sources\GameObjects\Weapons\Magnum.cpp">
       <Filter>Source Files\GameObjects\Weapons</Filter>
     </ClCompile>
+    <ClCompile Include="Sources\Managers\BulletPoolManager.cpp">
+      <Filter>Source Files\Managers</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Includes\GameStates\MainTitleScene.hpp">
@@ -229,6 +232,9 @@
     </ClInclude>
     <ClInclude Include="Includes\Utils\ObjectPool.h">
       <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Includes\Managers\BulletPoolManager.hpp">
+      <Filter>Header Files\Managers</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

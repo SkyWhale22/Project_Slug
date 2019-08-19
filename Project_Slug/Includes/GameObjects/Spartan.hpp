@@ -11,7 +11,7 @@ namespace Slug
 	namespace Utils
 	{
 		template <class Type>
-		class TMemoryPool;
+		class TObjectPool;
 	}
 
 	namespace Objects
@@ -26,12 +26,8 @@ namespace Slug
 			//using SpartanState = CharacterStates::CharacterStateBase;
 			friend class SpartanStateBase;
 
-
 			Weapon* m_pWeapon;
 			SpartanStateMachine* m_pStateMachine;
-			//SpartanState* m_pCurrentState;
-			Utils::TMemoryPool<Bullet>* m_pBulletPool;
-
 
 		public:
 			Spartan();

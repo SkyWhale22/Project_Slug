@@ -5,6 +5,10 @@ namespace Slug
 {
 	namespace Objects
 	{
+
+		//---------------------------------------------------------------
+		// TODO: Create shooting logic.
+		//---------------------------------------------------------------
 		class AssultRifle : public Weapon
 		{
 		public:

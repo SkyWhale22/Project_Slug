@@ -2,11 +2,10 @@
 #include "GameObjects/GameObject.hpp"
 #include "Utils/ObjectPool.h"
 
-namespace tinyxml2
-{
-	class XMLDocument;
-	class XMLElement;
-}
+//-----------------------------------------------------------------
+// Utils
+//-----------------------------------------------------------------
+#include "Utils/tinyxml2.h"
 
 namespace Slug
 {

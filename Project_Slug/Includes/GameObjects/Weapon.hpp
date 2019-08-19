@@ -8,6 +8,11 @@ namespace Slug
 	{
 		class Bullet;
 
+		//-------------------------------------------------------------------
+		// TODO: Make a spot that pointing the muzzle of each gun type. It 
+		// TODO: It should be just a vector 2d position, that rotating whenever player move the mouse. 
+		//-------------------------------------------------------------------
+
 		class Weapon : public GameObject
 		{
 		// ----- Member Variables -----

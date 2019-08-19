@@ -17,6 +17,7 @@
 // Managers
 //-----------------------------------------------------------------
 #include "Managers/MouseManager.hpp"
+#include "Managers/BulletPoolManager.hpp"
 
 //-----------------------------------------------------------------
 // States
@@ -75,9 +76,6 @@ namespace Slug
 			delete m_pStateMachine;
 			m_pStateMachine = nullptr;
 
-			delete m_pBulletPool;
-			m_pStateMachine = nullptr;
-
 			SDL_DestroyTexture(m_pTexture);
 		}
 
@@ -95,9 +93,6 @@ namespace Slug
 			m_doc.LoadFile("Includes/Data/SpriteData.xml");
 			m_pRoot = m_doc.RootElement();
 
-			// Generate bullet pool
-			m_pBulletPool = new Utils::TMemoryPool<Bullet>();
-			m_pBulletPool->Create();
 
 
 			//- Initialized sprite, and animation
@@ -128,16 +123,6 @@ namespace Slug
 			m_pWeapon->GetTransform().SetPosition(GetTransform().GetPosition());
 			m_pWeapon->FindDegreesToCursor(Managers::MouseManager::GetInstance()->GetMousePosition());
 			m_pWeapon->Update(deltaSeconds);
-
-			m_pBulletPool->CollectUnusedObject();
-
-			Bullet* pNode = m_pBulletPool->GetFreeListHead();
-			while (pNode)
-			{
-				pNode->Update(deltaSeconds);
-				pNode = pNode->GetNext();
-			}
-
 		}
 
 		 //---------------------------------------------------------------------------
@@ -174,16 +159,6 @@ namespace Slug
 			SDL_RenderFillRect(pRenderer, &dest);
 #endif	
 			m_pWeapon->Render(pRenderer);
-
-			// ----- Render Bullets -----
-			Bullet* pNode = m_pBulletPool->GetInUseListHead();
-
-			while (pNode)
-			{
-				pNode->SetBulletData("Magnum");
-				pNode->Render(pRenderer);
-				pNode = pNode->GetNext();
-			}
 		}
 
 		void Spartan::InitAnimation()
@@ -267,6 +242,8 @@ namespace Slug
 		{
 			if(m_currentAnim != (AnimationType)type)
 			{
+
+
 				m_currentFrameIndex = 0;
 				m_currentAnim = (AnimationType)type;
 				m_frameTimer = 0;
@@ -299,10 +276,7 @@ namespace Slug
 
  			if(event.type == SDL_MOUSEBUTTONDOWN)
 			{
-				Bullet* pBullet = m_pBulletPool->Get();
-
-				pBullet->GetTransform().SetPosition(this->GetTransform().GetPosition());
-				pBullet->PrintStatus();
+				Managers::BulletPoolManager::GetInstance()->GetBullet(GetTransform().GetPosition());
 			}
 #endif
 		}

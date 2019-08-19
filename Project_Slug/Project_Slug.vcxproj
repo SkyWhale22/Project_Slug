@@ -35,6 +35,7 @@
     <ClCompile Include="Sources\GameStates\GameStateMachine.cpp" />
     <ClCompile Include="Sources\GameStates\InGameScene.cpp" />
     <ClCompile Include="Sources\GameStates\MainTitleScene.cpp" />
+    <ClCompile Include="Sources\Managers\BulletPoolManager.cpp" />
     <ClCompile Include="Sources\Managers\MouseManager.cpp" />
     <ClCompile Include="Sources\UI\UIButton.cpp" />
     <ClCompile Include="Sources\Utils\SquirrelRNG.cpp" />
@@ -69,6 +70,7 @@
     <ClInclude Include="Includes\GameStates\GameStateMachine.hpp" />
     <ClInclude Include="Includes\GameStates\InGameScene.hpp" />
     <ClInclude Include="Includes\GameStates\MainTitleScene.hpp" />
+    <ClInclude Include="Includes\Managers\BulletPoolManager.hpp" />
     <ClInclude Include="Includes\Managers\MouseManager.hpp" />
     <ClInclude Include="Includes\UI\UIButton.hpp" />
     <ClInclude Include="Includes\Utils\ObjectPool.h" />

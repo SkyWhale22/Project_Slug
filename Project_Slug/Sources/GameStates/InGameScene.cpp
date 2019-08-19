@@ -1,7 +1,6 @@
 #include <iostream>
 #include "GameStates/InGameScene.hpp"
 #include <GameStates/GameStateMachine.hpp>
-#include <Managers/MouseManager.hpp>
 
 //-----------------------------------------------------------------
 // Core
@@ -13,6 +12,12 @@
 //-----------------------------------------------------------------
 #include "GameObjects/Spartan.hpp"
 #include "GameObjects/Weapons/Bullet.hpp"
+
+//-----------------------------------------------------------------
+// Managers
+//-----------------------------------------------------------------
+#include <Managers/MouseManager.hpp>
+#include <Managers/BulletPoolManager.hpp>
 
 namespace Slug
 {
@@ -26,6 +31,7 @@ namespace Slug
 			, m_pTestBullet(new Objects::Bullet(300, 300))
 		{
 			m_pTestBullet->SetBulletData("Magnum");
+			Managers::BulletPoolManager::GetInstance();
 		}
 
 		InGameScene::~InGameScene()
@@ -51,6 +57,7 @@ namespace Slug
 		void InGameScene::OnUpdate(double deltaSeconds)
 		{
 			m_pPlayer->Update(deltaSeconds);
+			Managers::BulletPoolManager::GetInstance()->UpdateBullets(deltaSeconds);
 			Core::Camera::GetInstance()->Update(deltaSeconds);
 		}
 
@@ -108,6 +115,8 @@ namespace Slug
 
 			m_pPlayer->Render(pRenderer);
 			m_pTestBullet->Render(pRenderer);
+
+			Managers::BulletPoolManager::GetInstance()->RenderBullets(pRenderer);
 #if DEBUG_CAMERA
 			Core::Camera::GetInstance()->DrawDebug(pRenderer);
 #endif

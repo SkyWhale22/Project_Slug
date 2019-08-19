@@ -4,7 +4,7 @@
 #include "Utils/tinyxml2.h"
 #include <chrono>
 #include <assert.h>
-
+#include "Core/Camera.hpp"
 
 //-----------------------------------------------------------------
 // Objects
@@ -61,6 +61,9 @@ namespace Slug
 			m_pBulletData = pRoot->FirstChildElement("Bullets");
 			assert(m_pBulletData != nullptr && "m_pBulletData was nullptr");
 
+			m_destRect.w = 32;
+			m_destRect.h = 32;
+
 			this->SetInUse(false);
 
 			SetTexture(m_pBulletData->FirstChildElement("SpritePath")->GetText());
@@ -68,7 +71,10 @@ namespace Slug
 
 		void Bullet::Update(double deltaSeconds)
 		{
-			m_destRect = { (int)this->GetTransform().GetPositionX(), (int)this->GetTransform().GetPositionY(), 100, 100 };
+			Vector2 cameraPos = Core::Camera::GetInstance()->GetPosition();
+
+			m_destRect.x = (int)(m_transform.GetPositionX()) - (int)cameraPos.m_x;
+			m_destRect.y = (int)(m_transform.GetPositionY()) - (int)cameraPos.m_y;
 		}
 		
 		void Bullet::Render(SDL_Renderer* const pRenderer)
@@ -83,13 +89,14 @@ namespace Slug
 			assert(pFrame != nullptr && "pFrame was nullptr!");
 
 			m_resourceRect =
-			{ (int)pFrame->IntAttribute("posX"),
+			{ 
+			(int)pFrame->IntAttribute("posX"),
 			(int)pFrame->IntAttribute("posY"),
 			(int)pFrame->IntAttribute("sizeX"),
 			(int)pFrame->IntAttribute("sizeY")
 			};
 
-			m_destRect = { (int)this->GetTransform().GetPositionX(), (int)this->GetTransform().GetPositionY(), 32, 32 };
+			//m_destRect = { (int)this->GetTransform().GetPositionX(), (int)this->GetTransform().GetPositionY(), 32, 32 };
 			// Search center position wherer the sprite will be rendererd.
 			m_center = { (int)pFrame->IntAttribute("centerX"), (int)pFrame->IntAttribute("centerY") };
 		}
