@@ -22,8 +22,6 @@ namespace Slug
 			SDL_Point		m_center;
 			Utils::Transform m_transform;
 
-			// Currently Not being used.
-
 		// --- Member Functions ---
 		private:
 		public:
@@ -43,9 +41,6 @@ namespace Slug
 				Movement* pMove = &m_moveDir;
 				return pMove;
 			}
-
-			//inline Vector2 GetPosition() const { return m_pos; }
-			//inline void SetPosition(const Vector2& pos) { m_pos = pos; }
 		};
 	}
 }

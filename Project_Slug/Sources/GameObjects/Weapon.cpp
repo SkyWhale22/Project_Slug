@@ -129,12 +129,6 @@ namespace Slug
 			SDL_RenderDrawLines(pRenderer, debugRect, 4);
 			SDL_RenderDrawLine(pRenderer, debugRect[3].x, debugRect[3].y, debugRect[0].x, debugRect[0].y);
 #endif
-
-#if DEBUG_POSITION
-			// --- Actual Point ---
-			SDL_SetRenderDrawColor(pRenderer, 255, 0, 0, 255);
-			SDL_RenderFillRect(pRenderer, &m_destRect);
-#endif
 		}
 
 		void Weapon::UpdateDebugLine()
@@ -145,21 +139,22 @@ namespace Slug
 			m_points[3] = { m_destRect.x,					m_destRect.y + m_destRect.h };
 		}
 
+		/*
 		void Weapon::FindDegreesToCursor(const Vector2& pos)
 		{
 			double deltaY = (double)pos.m_y - (double)((m_destRect.y + (m_destRect.y + m_destRect.h)) / 2);
 			double deltaX = (double)pos.m_x - (double)((m_destRect.x + (m_destRect.x + m_destRect.w)) / 2);
 
-			//  M_PI / 180.0
-			double degree = (atan2(deltaY, deltaX)* 180.0) / M_PI;
-			//std::cout << atan2(deltaY, deltaX) << " / " << degree << std::endl;
+			// + M_PI / 180.0
+			double degree = (atan2(deltaY, deltaX) * 180.0) / M_PI;
 
 			m_transform.Rotate(degree);
 		}
+		*/
 
 		SDL_Point Weapon::CalcRotatedDebugPoint(const SDL_Point& origin)
 		{
-			double degree = m_transform.GetAngle();
+			double degree = (m_transform.GetAngle() * M_PI) / 180.0;
 			Vector2 camera = Core::Camera::GetInstance()->GetPosition();
 			Vector2 transform = { m_transform.GetPositionX() - camera.m_x, m_transform.GetPositionY() - camera.m_y };
 

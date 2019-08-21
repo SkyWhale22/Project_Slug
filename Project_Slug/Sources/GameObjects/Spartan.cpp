@@ -30,7 +30,6 @@
 //-----------------------------------------------------------------
 #include "Utils/ObjectPool.h"
 
-
 //#include "CharacterStates/SpartanStates/SpartanIdleState.hpp"
 //#include "CharacterStates/SpartanStates/SpartanWalkState.hpp"
 
@@ -93,8 +92,6 @@ namespace Slug
 			m_doc.LoadFile("Includes/Data/SpriteData.xml");
 			m_pRoot = m_doc.RootElement();
 
-
-
 			//- Initialized sprite, and animation
 			InitAnimation();
 		}
@@ -121,7 +118,12 @@ namespace Slug
 			UpdateAnim(deltaSeconds);
 
 			m_pWeapon->GetTransform().SetPosition(GetTransform().GetPosition());
-			m_pWeapon->FindDegreesToCursor(Managers::MouseManager::GetInstance()->GetMousePosition());
+
+			// Update weapon data
+			Vector2 mousePosition = Managers::MouseManager::GetInstance()->GetMousePosition();
+			SDL_Rect destRect = m_pWeapon->GetDestRect();
+		
+			m_pWeapon->GetTransform().Rotate(Utils::FindDegreesToCursor(mousePosition, destRect));
 			m_pWeapon->Update(deltaSeconds);
 		}
 
@@ -142,7 +144,6 @@ namespace Slug
 #endif
 			const float transformX	= GetTransform().GetPositionX() - cameraPos.m_x;
 			const float mouseX = Managers::MouseManager::GetInstance()->GetMousePosition().m_x;
-
 
 			SDL_Rect* pSrc = &m_animMap[m_currentAnim].m_frames[m_currentFrameIndex].m_sourcePosition;
 			m_resourceRect = *pSrc;
@@ -242,8 +243,6 @@ namespace Slug
 		{
 			if(m_currentAnim != (AnimationType)type)
 			{
-
-
 				m_currentFrameIndex = 0;
 				m_currentAnim = (AnimationType)type;
 				m_frameTimer = 0;
@@ -276,7 +275,13 @@ namespace Slug
 
  			if(event.type == SDL_MOUSEBUTTONDOWN)
 			{
-				Managers::BulletPoolManager::GetInstance()->GetBullet(GetTransform().GetPosition());
+				Vector2 cameraPos = Core::Camera::GetInstance()->GetPosition();
+
+				SDL_Point point = m_pWeapon->GetMuzzelPoint();
+				Vector2 muzzel = { point.x + (int)cameraPos.m_x, point.y + (int)cameraPos.m_y };
+
+				double angle = m_pWeapon->GetTransform().GetAngle() + 90;
+				Managers::BulletPoolManager::GetInstance()->GetBullet(muzzel, angle);
 			}
 #endif
 		}

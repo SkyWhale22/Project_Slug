@@ -22,13 +22,11 @@ namespace Slug
 			// ----- Member Variables -----
 		private:
 			Objects::Spartan* m_pPlayer;
-			Objects::Bullet* m_pTestBullet;
 
 			// ----- Member Functions -----
 		public:
 			InGameScene();
 			virtual ~InGameScene() override;
-
 
 			// Inherited via GameState
 			virtual void OnEnter(GameStateMachine* pStateMachine)	override;

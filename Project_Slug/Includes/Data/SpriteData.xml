@@ -55,16 +55,13 @@
 
     <BulletFrame>
       <AssultRifle  posX = ''   posY = '0'  sizeX = ''  sizeY = '' centerX = ''  centerY = ''/>
-      <Magnum       posX = '168'  posY = '31' sizeX = '7'  sizeY = '12' centerX = '4'  centerY = '6'/>
+      <Magnum       posX = '169'  posY = '32' sizeX = '7'  sizeY = '13' centerX = '0'  centerY = '0'/>
       <Shotgun      posX = ''   posY = ''  sizeX = ''  sizeY = '' centerX = ''  centerY = ''/>
       <PlasmaPistol posX = ''     posY = ''   sizeX = ''    sizeY = '' centerX = ''  centerY = ''/>
       <PlasmaRifle  posX = ''     posY = ''   sizeX = ''    sizeY = '' centerX = ''  centerY = ''/>
     </BulletFrame>
   </Bullets>
-  
 </Body>
-
-
 
 
 

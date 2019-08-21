@@ -1,5 +1,7 @@
 #pragma once
 #include "Utils/Utils.hpp"
+#include <math.h>
+#include "SDL.h"
 
 namespace Slug
 {
@@ -42,6 +44,18 @@ namespace Slug
 			Transform operator+(const Transform& rhs);
 			void operator=(const Transform& kRhs);
 		};
+
+		inline double FindDegreesToCursor(const Vector2& pos, SDL_Rect destRect)
+		{
+			double deltaY = (double)pos.m_y - (double)((destRect.y + (destRect.y + destRect.h)) / 2);
+			double deltaX = (double)pos.m_x - (double)((destRect.x + (destRect.x + destRect.w)) / 2);
+
+			// + M_PI / 180.0
+			double degree = (atan2(deltaY, deltaX) * 180.0) / M_PI;
+
+			//m_transform.Rotate(degree);
+			return degree;
+		}
 	}
 }
 

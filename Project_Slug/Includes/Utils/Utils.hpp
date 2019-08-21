@@ -72,8 +72,6 @@ enum class AnimationType
 	kDie
 };
 
-
-
 /******************************************************
 
 int x = 300;
@@ -99,22 +97,11 @@ SDL_Point Global_Rotate(SDL_Point origin)
 	return { x, y };
 }
 
-			//---- Original ----
-			// int x = (origin.y * sin(-radian)) + (origin.x * cos(radian0));
-			// int y = (origin.y * cos(radian))  - (origin.x * sin(-radian));
-			//int x = (int)((m_transform.GetPositionX()) + ((double)origin.y - m_transform.GetPositionY()) * sin(-degree) + ((double)origin.x - m_transform.GetPositionX()) * cos(degree));
-			// int y = (int)((m_transform.GetPositionY()) + ((double)origin.y - m_transform.GetPositionY()) * cos(degree) - ((double)origin.x - m_transform.GetPositionX()) * sin(-degree));
-			//------------------
-
-
+//---- Original ----
+// int x = (origin.y * sin(-radian)) + (origin.x * cos(radian0));
+// int y = (origin.y * cos(radian))  - (origin.x * sin(-radian));
+//int x = (int)((m_transform.GetPositionX()) + ((double)origin.y - m_transform.GetPositionY()) * sin(-degree) + ((double)origin.x - m_transform.GetPositionX()) * cos(degree));
+// int y = (int)((m_transform.GetPositionY()) + ((double)origin.y - m_transform.GetPositionY()) * cos(degree) - ((double)origin.x - m_transform.GetPositionX()) * sin(-degree));
+//------------------
 
 ******************************************************/
-
-
-/*
- *  \brief
- *
- *  \param
- *
- *  \return
- **/

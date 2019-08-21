@@ -39,7 +39,6 @@ namespace Slug
 		};
 
 		// Very very very very simple version of templated memory pool
-		// TODO: 
 		template <class Type>
 		class TObjectPool
 		{
@@ -134,8 +133,12 @@ namespace Slug
 
 				Type* pObject = m_freeListHead;
 				m_freeListHead = m_freeListHead->GetNext();
-				m_freeListHead->SetPrev(nullptr);
-				pObject->SetNext(nullptr);
+
+				if(m_freeListHead)
+				{
+					m_freeListHead->SetPrev(nullptr);
+					pObject->SetNext(nullptr);
+				}
 
 				if (m_inUseListHead == nullptr)
 				{
@@ -195,7 +198,7 @@ namespace Slug
 					pObject->GetNext()->SetPrev(pObject->GetPrev());
 				}
 
-				// Common
+				//
 				pObject->SetNext(m_freeListHead);
 				pObject->SetPrev(nullptr);
 				m_freeListHead->SetPrev(pObject);

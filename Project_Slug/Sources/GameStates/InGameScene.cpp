@@ -28,9 +28,7 @@ namespace Slug
 		//------------------------------------------------------
 		InGameScene::InGameScene()
 			: m_pPlayer(new Objects::Spartan(640, 360))
-			, m_pTestBullet(new Objects::Bullet(300, 300))
 		{
-			m_pTestBullet->SetBulletData("Magnum");
 			Managers::BulletPoolManager::GetInstance();
 		}
 
@@ -38,9 +36,6 @@ namespace Slug
 		{
 			delete m_pPlayer;
 			m_pPlayer = nullptr;
-
-			delete m_pTestBullet;
-			m_pTestBullet = nullptr;
 		}
 
 		void InGameScene::OnEnter(GameStateMachine* pStateMachine)
@@ -114,7 +109,6 @@ namespace Slug
 
 
 			m_pPlayer->Render(pRenderer);
-			m_pTestBullet->Render(pRenderer);
 
 			Managers::BulletPoolManager::GetInstance()->RenderBullets(pRenderer);
 #if DEBUG_CAMERA

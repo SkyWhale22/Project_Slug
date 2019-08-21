@@ -14,13 +14,12 @@
 using tinyxml2::XMLDocument;
 using tinyxml2::XMLElement;
 
-
 namespace Slug
 {
 	namespace Objects
 	{
 		//--------------------------------------------------------------------
-		// ctors
+		// Ctors
 		//--------------------------------------------------------------------
 		Bullet::Bullet()
 		{
@@ -61,7 +60,7 @@ namespace Slug
 			m_pBulletData = pRoot->FirstChildElement("Bullets");
 			assert(m_pBulletData != nullptr && "m_pBulletData was nullptr");
 
-			m_destRect.w = 32;
+			m_destRect.w = 16;
 			m_destRect.h = 32;
 
 			this->SetInUse(false);
@@ -134,6 +133,6 @@ namespace Slug
 		{
 			m_pPrev = pObject;
 		}
-#pragma  endregion IPoolable
+#pragma endregion IPoolable
 	}
 }

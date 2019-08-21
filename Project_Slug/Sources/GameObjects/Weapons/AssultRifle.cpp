@@ -47,19 +47,17 @@ namespace Slug
 			Initialize();
 		}
 
-		AssultRifle::~AssultRifle()
-		{
-		}
 
-		//--------------------------------------------------------------------
-		// Basic constructor
-		//--------------------------------------------------------------------
 		AssultRifle::AssultRifle(const AssultRifle& instance)
 		{
 			m_transform = instance.m_transform;
 			m_destRect = instance.m_destRect;
 
 			Initialize();
+		}
+
+		AssultRifle::~AssultRifle()
+		{
 		}
 
 		void AssultRifle::Initialize()
@@ -97,12 +95,12 @@ namespace Slug
 		{
 			Vector2 camera = Core::Camera::GetInstance()->GetPosition();
 
-
 			// Calculate destination rect.
 			m_destRect.x = (int)m_transform.GetPositionX() - (int)camera.m_x - m_center.x;
 			m_destRect.y = (int)m_transform.GetPositionY() - (int)camera.m_y - m_center.y;
 
-
+			m_muzzel[0] = { m_destRect.x + m_destRect.w, (m_destRect.y * 2 + m_destRect.h) / 2 };
+			m_muzzel[1] = CalcRotatedDebugPoint(m_muzzel[0]);
 #if DEBUG_POSITION
 			Weapon::Update(deltaSeconds);
 #endif
@@ -126,6 +124,8 @@ namespace Slug
 			// After all, render the sprite
 			SDL_RenderCopyEx(pRenderer, m_pTexture, &m_resourceRect, &m_destRect, m_transform.GetAngle(), &m_center, renderFlip);
 
+			SDL_Rect rect = { m_muzzel[1].x, m_muzzel[1].y, 10, 10 };
+			SDL_RenderDrawRect(pRenderer, &rect);
 		}
 
 		void AssultRifle::Shoot()

@@ -1,11 +1,14 @@
 #pragma once
+//-----------------------------------------------------------------
+// GameObject
+//-----------------------------------------------------------------
 #include "GameObjects/GameObject.hpp"
-#include "Utils/ObjectPool.h"
 
 //-----------------------------------------------------------------
 // Utils
 //-----------------------------------------------------------------
 #include "Utils/tinyxml2.h"
+#include "Utils/ObjectPool.h"
 
 namespace Slug
 {
@@ -32,8 +35,6 @@ namespace Slug
 			virtual void Update(double deltaSeconds) override;
 			virtual void Render(SDL_Renderer* const pRenderer) override;
 
-			void SetBulletData(const char* pName);
-
 			// Inherited via IPoolable
 			virtual void Reset() override;
 			virtual void PrintStatus() override;
@@ -42,6 +43,8 @@ namespace Slug
 			virtual Bullet* GetPrev() override;
 			virtual void SetNext(Bullet* pObject) override;
 			virtual void SetPrev(Bullet* pObject) override;
+			
+			void SetBulletData(const char* pName);
 		};
 	}
 }

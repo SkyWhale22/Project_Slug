@@ -29,7 +29,7 @@ namespace Slug
 			~BulletPoolManager();
 
 			void UpdateBullets(double deltaSeconds);
-			void GetBullet(Vector2 position);
+			void GetBullet(Vector2 position, double angle);
 			void RenderBullets(SDL_Renderer* const pRenderer);
 		};
 	}
