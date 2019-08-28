@@ -2,6 +2,11 @@
 //-----------------------------------------------------------------
 // GameObject
 //-----------------------------------------------------------------
+#include <string>
+
+//-----------------------------------------------------------------
+// GameObject
+//-----------------------------------------------------------------
 #include "GameObjects/GameObject.hpp"
 
 //-----------------------------------------------------------------
@@ -44,7 +49,7 @@ namespace Slug
 			virtual void SetNext(Bullet* pObject) override;
 			virtual void SetPrev(Bullet* pObject) override;
 			
-			void SetBulletData(const char* pName);
+			void SetBulletData(std::string_view name);
 		};
 	}
 }

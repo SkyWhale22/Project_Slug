@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<!--
+    ==================================================
+                   File Description
+    ==================================================
+-->
+
+<Body>
+  <Camera speed = "330"/>
+
+  <Characters>
+    <Spartan Speed = "300" Shield = "100" Health = "100"/>
+    <Elite   Speed = "0" Shield =" " Health = "0"/>
+    <Grunt   Speed = "0" Shield =" " Health = "0"/>
+  </Characters>
+
+  <!-- Status of each bullet -->
+  <Weapon>
+    <AssaultRifle Clip = "32" Mag = "196" Speed = "10" Dmg = " "/>
+    <Magnum       Clip = "8" Mag = "32" Speed = "20" Dmg = " "/>
+    <Shotgun      Clip = "6" Mag = "18" Speed = "" Dmg = " "/>
+    <PlasmaPistol Clip = " " Mag = " " Speed = "" Dmg = " "/>
+    <PlasmaRifle  Clip = " " Mag = " " Speed = "" Dmg = " "/>
+  </Weapon>
+</Body>

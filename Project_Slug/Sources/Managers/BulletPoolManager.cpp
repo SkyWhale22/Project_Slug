@@ -40,12 +40,12 @@ namespace Slug
 			}
 		}
 
-		void BulletPoolManager::GetBullet(Vector2 position, double angle)
+		Objects::Bullet* BulletPoolManager::GetBullet(Vector2 position, double angle)
 		{
 			Objects::Bullet* pBullet = m_pBulletPool->Get();
 
 			if (!pBullet)
-				return;
+				return nullptr;
 
 			Vector2 adjustedPosition;
 			adjustedPosition.m_x = position.m_x;
@@ -54,6 +54,8 @@ namespace Slug
 			pBullet->GetTransform().SetPosition(adjustedPosition);
 			pBullet->GetTransform().Rotate(angle);
 			pBullet->PrintStatus();
+
+			return pBullet;
 		}
 
 		void BulletPoolManager::RenderBullets(SDL_Renderer* const pRenderer)
@@ -63,7 +65,7 @@ namespace Slug
 
 			while (pNode)
 			{
-				pNode->SetBulletData("Magnum");
+				//pNode->SetBulletData("Magnum");
 				pNode->Render(pRenderer);
 				pNode = pNode->GetNext();
 			}

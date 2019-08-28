@@ -9,14 +9,14 @@ namespace Slug
 		//---------------------------------------------------------------
 		// TODO: Create shooting logic.
 		//---------------------------------------------------------------
-		class AssultRifle : public Weapon
+		class AssaultRifle final : public Weapon
 		{
 		public:
-			AssultRifle();
-			AssultRifle(const Vector2& pos);
-			AssultRifle(float posX, float posY);
-			AssultRifle(const AssultRifle& instance);
-			~AssultRifle();
+			AssaultRifle();
+			AssaultRifle(const Vector2& pos);
+			AssaultRifle(float posX, float posY);
+			AssaultRifle(const AssaultRifle& instance);
+			~AssaultRifle();
 
 			// Inherited via GameObject
 			virtual void Initialize() override;

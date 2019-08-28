@@ -75,22 +75,17 @@ namespace Slug
 
 			Initialize();
 		}
+		*/
 
 		//--------------------------------------------------------------------
-		// Destructor
+		// D'tor
 		//--------------------------------------------------------------------
-		Weapon::~Weapon()
-		{
-		} 
-		*/
-		/**-------------------------------------------------------------------
-		 * 
-		 * Initialization function.
-		 * This function contains common things that should be initialized
-		 * in constructors.
-		 * 
-		 * \param N\A \n
-		-------------------------------------------------------------------**/
+
+		//-------------------------------------------------------------------
+		// Initialization function.
+		// This function contains common things that should be initialized
+		// in constructors.
+		//-------------------------------------------------------------------
 		void Weapon::Initialize()
 		{
 			SetTexture("Resources/Sprites/Spartan.png");
@@ -111,10 +106,8 @@ namespace Slug
 		}
 
 		//--------------------------------------------------------------------
-		/**
-		 * \brief Rendering function.
-		 * \param pRenderer	instance that help to render. SDL included. 
-		**/
+		// brief Rendering function.
+		// pRenderer	instance that help to render. SDL included. 
 		//--------------------------------------------------------------------
 		void Weapon::Render(SDL_Renderer* const pRenderer)
 		{
@@ -155,6 +148,7 @@ namespace Slug
 		SDL_Point Weapon::CalcRotatedDebugPoint(const SDL_Point& origin)
 		{
 			double degree = (m_transform.GetAngle() * M_PI) / 180.0;
+		
 			Vector2 camera = Core::Camera::GetInstance()->GetPosition();
 			Vector2 transform = { m_transform.GetPositionX() - camera.m_x, m_transform.GetPositionY() - camera.m_y };
 
@@ -166,6 +160,24 @@ namespace Slug
 
 			return { x, y };
 		}
+
+		const std::string_view Weapon::ConvTypeToStr()
+		{ 
+			switch (m_weaponType)
+			{
+			case WeaponType::kMagnum:
+				return "Magnum";
+			case WeaponType::kAssaultRifle:
+				return "AssaultRifle";
+			case WeaponType::kShotgun: 
+				return "Shotgun";
+			case WeaponType::kPlasmaPistol: 
+				return "PlasmaPistol";
+			case WeaponType::kPlasmaRifle: 
+				return "PlasmaRifle";
+			}
+
+			return nullptr;
+		}
 	}
 }
-

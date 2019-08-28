@@ -3,6 +3,7 @@
 #include "Utils/tinyxml2.h"
 #include <unordered_map>
 #include <vector>
+#include <memory>
 
 using tinyxml2::XMLDocument;
 using tinyxml2::XMLElement;
@@ -11,10 +12,23 @@ namespace Slug
 {
 	namespace Objects
 	{
+		class Weapon;
+
 		class Character : public GameObject
 		{
 		// --- Member Variables ---
+		private:
+			struct StatusChunk
+			{
+				size_t m_hp;
+				size_t m_shield;
+				size_t m_movingSpeed;				
+			} m_stats;
+
+			Weapon* m_pCurWeapon;
+
 		protected:
+			std::unique_ptr<Weapon> m_pWeapons[2];
 			/* ---------- Animation Related -------------*/	
 
 			struct Frame
@@ -47,7 +61,7 @@ namespace Slug
 		// --- Member Functions ---
 		protected:
 		public:
-			virtual ~Character() = 0 {};
+			virtual ~Character();
 
 			// Inherited via GameObject
 			virtual void Initialize() = 0;
@@ -58,7 +72,10 @@ namespace Slug
 			virtual void InitAnimation() = 0;
 			virtual void SetAnimation(int type) = 0;
 			void UpdateAnim(double deltaSeconds);
-
+			void SetWeapon(Weapon* pWeapon);
+			
+			StatusChunk& GetStats() { return m_stats; }
+			Weapon* GetCurrentWeapon() const { return m_pCurWeapon; }
 		};
 	}
 }

@@ -1,0 +1,50 @@
+Project_Slug:
+    ☐ Replace all const char* to whether std::string or std::string_view (C++ 17 required)
+
+    GameObjects:
+        Sprites:
+            ☐ Find each bullet's location from the sprite sheet. 
+
+        Status :
+            ✔ Migrate magic nubmers to XML file. Things to add: @done (8/29/2019, 1:41:01 AM)
+                ✔ Unit's moving speed @done (8/29/2019, 1:40:38 AM)
+                ✔ Unit's health point @done (8/29/2019, 1:40:39 AM)
+                ✔ Unit's initial shield amount @done (8/29/2019, 1:40:55 AM)
+                ✔ Number of bullets to hold. @done (8/29/2019, 1:40:40 AM)
+            
+        Bullet:
+            ☐ Make bullets move.
+                Calculate the unit vector from the muzzel of each gun to the mouse.
+                Bullet should move toward to where mouse pointed.
+                Each bullet moves by their own moving speed which should be defined in a xml file.
+            ☐ Let it be collected by object pool when it hits on something else,
+            or if it's alive for 5 seconds after it's been activated.
+            ☐ Add enum to configure bullet's type.
+                This will be used for getting each weapon's bullet sprite from .png file.
+                and sent as a paraemter whatever characters ask bullet pool managet to activate
+                a new bullet.  
+    
+        Weapon:
+            ✔ Make enum class that states each weapon's type @done (8/27/2019, 11:03:52 AM)
+            ✔ Make a function that convert weapon's data to string and send this as a parameter to SetBulletData() in Bullet class. @done (8/26/2019, 7:51:15 PM)
+            ✔ Add Magnum class @done (8/29/2019, 4:57:11 AM)
+            ☐ Add PlasmaRifle class
+        
+        Spartan:
+            ☐ Make spartan class be derived from obervee(weapon swap system) class
+            ✔ Create two slots for holding weapons. And another pointer that pointing current weapon. @done (8/29/2019, 4:57:45 AM)
+            ☐ 
+
+    Systems:
+        ☐ @high @today Create observer and observee(interface!) class.
+        
+        Weapon Swap System:
+            ☐ Check observee's secondary weapon slot and if it isn't null, let observee switch its weapon.  
+
+        Weapon Reload System: 
+            ☐ @high @today Check observee class' current weapon status, which includes current bullet amount and stocks in mags.
+            ☐ @high @today Allow each character to reload its weapon, when only there are bullets left. 
+
+        Collision Detection:
+            ☐ Just simple rectangular collider? or  Pixel perfect ?
+        

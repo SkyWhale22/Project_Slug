@@ -14,7 +14,7 @@
 //-----------------------------------------------------------------
 // Objects
 //-----------------------------------------------------------------
-#include "GameObjects/Weapons/AssultRifle.hpp"
+#include "GameObjects/Weapons/AssaultRifle.hpp"
 
 using tinyxml2::XMLDocument;
 using tinyxml2::XMLElement;
@@ -26,21 +26,21 @@ namespace Slug
 		//--------------------------------------------------------------------
 		// Basic constructor
 		//--------------------------------------------------------------------
-		AssultRifle::AssultRifle()
+		AssaultRifle::AssaultRifle()
 		{
 			m_transform = Utils::Transform(0, 0, 0);
 			
 			Initialize();
 		}
 
-		AssultRifle::AssultRifle(const Vector2& pos)
+		AssaultRifle::AssaultRifle(const Vector2& pos)
 		{
 			m_transform = Utils::Transform(pos, 0);
 
 			Initialize();
 		}
 
-		AssultRifle::AssultRifle(float posX, float posY)
+		AssaultRifle::AssaultRifle(float posX, float posY)
 		{
 			m_transform = Utils::Transform(posX, posY, 0);
 
@@ -48,7 +48,7 @@ namespace Slug
 		}
 
 
-		AssultRifle::AssultRifle(const AssultRifle& instance)
+		AssaultRifle::AssaultRifle(const AssaultRifle& instance)
 		{
 			m_transform = instance.m_transform;
 			m_destRect = instance.m_destRect;
@@ -56,14 +56,16 @@ namespace Slug
 			Initialize();
 		}
 
-		AssultRifle::~AssultRifle()
+		AssaultRifle::~AssaultRifle()
 		{
 		}
 
-		void AssultRifle::Initialize()
+		void AssaultRifle::Initialize()
 		{
 			// Call parent class's initialization
-			Weapon::Initialize();
+			Weapon::Initialize();;
+			//SetTexture("Resources/Sprites/Spartan.png");
+			this->SetWeaponType(WeaponType::kAssaultRifle);
 
 			Vector2 camera = Core::Camera::GetInstance()->GetPosition();
 			m_destRect = { (int)m_transform.GetPositionX() - (int)camera.m_x, (int)m_transform.GetPositionY() - (int)camera.m_y, 120, 44 };
@@ -75,7 +77,7 @@ namespace Slug
 			XMLElement* pWeaponData = m_pRoot->FirstChildElement("Weapons");
 			assert(pWeaponData != nullptr && "pWeaponData was nullptr");
 
-			XMLElement* pARData = pWeaponData->FirstChildElement("SpriteFrame")->FirstChildElement("AssultRifle");
+			XMLElement* pARData = pWeaponData->FirstChildElement("SpriteFrame")->FirstChildElement("AssaultRifle");
 			assert(pARData != nullptr && "pARData was nullptr");
 
 			//m_resourceSize = { (float)pARData->IntAttribute("sizeX"), (float)pARData->IntAttribute("sizeY") };
@@ -91,7 +93,7 @@ namespace Slug
 			m_center = { (int)pARData->IntAttribute("centerX"), (int)pARData->IntAttribute("centerY") };
 		}
 
-		void AssultRifle::Update(double deltaSeconds)
+		void AssaultRifle::Update(double deltaSeconds)
 		{
 			Vector2 camera = Core::Camera::GetInstance()->GetPosition();
 
@@ -106,7 +108,7 @@ namespace Slug
 #endif
 		}
 
-		void AssultRifle::Render(SDL_Renderer* const pRenderer)
+		void AssaultRifle::Render(SDL_Renderer* const pRenderer)
 		{
 			// Calling Render() from parent class(Weapon)
 			Weapon::Render(pRenderer);
@@ -128,11 +130,11 @@ namespace Slug
 			SDL_RenderDrawRect(pRenderer, &rect);
 		}
 
-		void AssultRifle::Shoot()
+		void AssaultRifle::Shoot()
 		{
 		}
 
-		void AssultRifle::Reload()
+		void AssaultRifle::Reload()
 		{
 		}
 	}

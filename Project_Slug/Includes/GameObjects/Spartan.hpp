@@ -26,7 +26,6 @@ namespace Slug
 			//using SpartanState = CharacterStates::CharacterStateBase;
 			friend class SpartanStateBase;
 
-			Weapon* m_pWeapon;
 			SpartanStateMachine* m_pStateMachine;
 
 		public:

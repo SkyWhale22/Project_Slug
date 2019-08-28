@@ -61,6 +61,9 @@ namespace Slug
 		{
 			// Call parent class's initialization
 			Weapon::Initialize();
+			//SetTexture("Resources/Sprites/Spartan.png");
+
+			this->SetWeaponType(WeaponType::kMagnum);
 
 			Vector2 camera = Core::Camera::GetInstance()->GetPosition();
 			m_destRect = { (int)m_transform.GetPositionX() - (int)camera.m_x, (int)m_transform.GetPositionY() - (int)camera.m_y, 55, 55 };

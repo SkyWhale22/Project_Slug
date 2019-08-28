@@ -7,8 +7,11 @@ namespace Slug
 	{
 		void GameObject::SetTexture(const char* pSpritePath)
 		{
-			if (m_pTexture)
-				SDL_DestroyTexture(m_pTexture);
+			if (!pSpritePath)
+				return;
+
+			//if (this->m_pTexture != nullptr)
+				//SDL_DestroyTexture(m_pTexture);
 
 			m_pTexture = IMG_LoadTexture(Core::Application::GetRenderer(), pSpritePath);
 		}

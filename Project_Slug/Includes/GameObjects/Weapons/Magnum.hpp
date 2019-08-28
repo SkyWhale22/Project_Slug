@@ -5,7 +5,7 @@ namespace Slug
 {
 	namespace Objects
 	{
-		class Magnum : public Weapon
+		class Magnum final : public Weapon
 		{
 		public:
 			Magnum();

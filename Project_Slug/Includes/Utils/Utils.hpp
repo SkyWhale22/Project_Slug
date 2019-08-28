@@ -68,8 +68,8 @@ enum class AnimationType
 {
 	kIdle,
 	kWalk,
-	kAttack,
-	kDie
+	kDie,
+	kTotal
 };
 
 /******************************************************

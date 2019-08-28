@@ -9,7 +9,7 @@
 // Objects
 //-----------------------------------------------------------------
 #include "GameObjects/Spartan.hpp"
-#include "GameObjects/Weapons/AssultRifle.hpp"
+#include "GameObjects/Weapons/AssaultRifle.hpp"
 #include "GameObjects/Weapons/Magnum.hpp"
 #include "GameObjects/Weapons/Bullet.hpp"
 
@@ -33,13 +33,17 @@
 //#include "CharacterStates/SpartanStates/SpartanIdleState.hpp"
 //#include "CharacterStates/SpartanStates/SpartanWalkState.hpp"
 
+std::string TestFunc()
+{
+	return "testestst";
+}
+
 namespace Slug
 {
 	namespace Objects
 	{
 		Spartan::Spartan()
-			: m_pWeapon(new AssultRifle(0, 0))
-			, m_pStateMachine(new CharacterStates::SpartanStateMachine())
+			: m_pStateMachine(new CharacterStates::SpartanStateMachine())
 			//, m_pCurrentState(new CharacterStates::SpartanIdleState())
 		{
 			m_transform = Utils::Transform(0, 0, 0);
@@ -48,8 +52,7 @@ namespace Slug
 		}
 
 		Spartan::Spartan(float posX, float posY)
-			: m_pWeapon(new Magnum(posX, posY))
-			, m_pStateMachine(new CharacterStates::SpartanStateMachine())
+			: m_pStateMachine(new CharacterStates::SpartanStateMachine())
 			//, m_pCurrentState(new CharacterStates::SpartanIdleState())
 		{
 			m_transform = Utils::Transform(posX, posY, 0);
@@ -58,8 +61,7 @@ namespace Slug
 		}
 
 		Spartan::Spartan(const Vector2& initPos)
-			: m_pWeapon(new Magnum(initPos))
-			, m_pStateMachine(new CharacterStates::SpartanStateMachine())
+			: m_pStateMachine(new CharacterStates::SpartanStateMachine())
 			//, m_pCurrentState(new CharacterStates::SpartanIdleState())
 		{
 			m_transform = Utils::Transform(initPos, 0);
@@ -69,8 +71,8 @@ namespace Slug
 
 		Spartan::~Spartan()
 		{
-			delete m_pWeapon;
-			m_pWeapon = nullptr;
+			//delete m_pWeapon;
+			//m_pWeapon = nullptr;
 
 			delete m_pStateMachine;
 			m_pStateMachine = nullptr;
@@ -87,6 +89,21 @@ namespace Slug
 		{
 			//- Dest to render
 			m_destRect = { (int)(m_transform.GetPositionX() - (s_kSpriteWidth * 0.5)), (int)(m_transform.GetPositionY() - (s_kSpriteHeight * 0.5)), s_kSpriteWidth, s_kSpriteHeight };
+
+			m_doc.LoadFile("Includes/Data/ObjectStatus.xml");
+			m_pRoot = m_doc.RootElement();
+
+			XMLElement* pSpartanStats = m_pRoot->FirstChildElement("Characters")->FirstChildElement("Spartan");
+
+			//- Set status.
+			this->GetStats().m_hp			= pSpartanStats->IntAttribute("Health");
+			this->GetStats().m_shield		= pSpartanStats->IntAttribute("Shield");
+			this->GetStats().m_movingSpeed	= pSpartanStats->IntAttribute("Speed");
+
+			//- Set initial weapons;
+			m_pWeapons[0] = std::make_unique<Magnum>(this->GetTransform().GetPosition());
+			m_pWeapons[1] = std::make_unique<AssaultRifle>(this->GetTransform().GetPosition());
+			this->SetWeapon(m_pWeapons[0].get());
 
 			//- XML reader
 			m_doc.LoadFile("Includes/Data/SpriteData.xml");
@@ -117,14 +134,15 @@ namespace Slug
 
 			UpdateAnim(deltaSeconds);
 
-			m_pWeapon->GetTransform().SetPosition(GetTransform().GetPosition());
+			Weapon* pCurWeapon = this->GetCurrentWeapon();
+			pCurWeapon->GetTransform().SetPosition(GetTransform().GetPosition());
 
 			// Update weapon data
 			Vector2 mousePosition = Managers::MouseManager::GetInstance()->GetMousePosition();
-			SDL_Rect destRect = m_pWeapon->GetDestRect();
+			SDL_Rect destRect = pCurWeapon->GetDestRect();
 		
-			m_pWeapon->GetTransform().Rotate(Utils::FindDegreesToCursor(mousePosition, destRect));
-			m_pWeapon->Update(deltaSeconds);
+			pCurWeapon->GetTransform().Rotate(Utils::FindDegreesToCursor(mousePosition, destRect));
+			pCurWeapon->Update(deltaSeconds);
 		}
 
 		 //---------------------------------------------------------------------------
@@ -159,7 +177,7 @@ namespace Slug
 			SDL_Rect dest = { (int)m_transform.GetPositionX() - 5, (int)m_transform.GetPositionY() - 5, 10, 10 };
 			SDL_RenderFillRect(pRenderer, &dest);
 #endif	
-			m_pWeapon->Render(pRenderer);
+			this->GetCurrentWeapon()->Render(pRenderer);
 		}
 
 		void Spartan::InitAnimation()
@@ -176,7 +194,7 @@ namespace Slug
 			const int spriteWidth	= pSpartanDataChunk->FirstChildElement("SpriteSize")->IntAttribute("width");
 			const int spriteHeight	= pSpartanDataChunk->FirstChildElement("SpriteSize")->IntAttribute("height");
 
-			for (int animIndex = 0; animIndex < s_kTotalAnimSpartan; ++animIndex)
+			for (int animIndex = 0; animIndex < (int)AnimationType::kTotal; ++animIndex)
 			{
 				Animation anim;
 				int maxFrame;
@@ -189,6 +207,7 @@ namespace Slug
 				case AnimationType::kIdle:
 				{
 					pType = pAnimation->FirstChildElement("Idle");
+
 					anim.m_animationSpeed = 1;
 					anim.m_shouldLoop = true;
 					anim.m_frameDuration = 0.1f;
@@ -203,20 +222,13 @@ namespace Slug
 					anim.m_frameDuration = 0.1f;
 				}
 				break;
-				case AnimationType::kAttack:
-				{
-					pType = pAnimation->FirstChildElement("Attack");
-
-					anim.m_animationSpeed = 1;
-					anim.m_shouldLoop = false;
-				}
-				break;
 				case AnimationType::kDie:
 				{
 					pType = pAnimation->FirstChildElement("Die");
 
-					anim.m_animationSpeed = 1;
+					anim.m_animationSpeed = 0.0f;
 					anim.m_shouldLoop = false;
+					anim.m_animationSpeed = 1;
 				}
 				break;
 				}
@@ -260,16 +272,22 @@ namespace Slug
 				{
 				case SDLK_1:
 				{
-					delete m_pWeapon;
-					m_pWeapon = new Magnum(this->GetTransform().GetPosition());
+					//m_pWeapon = new Magnum(this->GetTransform().GetPosition());
+					this->SetWeapon(m_pWeapons[0].get());
 				}
 				break;
 				case SDLK_2:
 				{
-					delete m_pWeapon;
-					m_pWeapon = new AssultRifle(this->GetTransform().GetPosition());
+					//m_pWeapon = new AssaultRifle(this->GetTransform().GetPosition());
+					this->SetWeapon(m_pWeapons[1].get());
 				}
 				break;
+				case SDLK_e:
+				{
+					
+				}
+				break;
+
 				}
 			}
 
@@ -277,17 +295,22 @@ namespace Slug
 			{
 				Vector2 cameraPos = Core::Camera::GetInstance()->GetPosition();
 
-				SDL_Point point = m_pWeapon->GetMuzzelPoint();
+				SDL_Point point = this->GetCurrentWeapon()->GetMuzzelPoint();
 				Vector2 muzzel = { point.x + (int)cameraPos.m_x, point.y + (int)cameraPos.m_y };
 
-				double angle = m_pWeapon->GetTransform().GetAngle() + 90;
-				Managers::BulletPoolManager::GetInstance()->GetBullet(muzzel, angle);
+				int adjust = 90;
+				double angle = this->GetCurrentWeapon()->GetTransform().GetAngle() + adjust;
+
+				//const std::string_view& test = m_pWeapon->ConvTypeToStr();
+				//std::string test = m_pWeapon->ConvTypeToStr();
+				Managers::BulletPoolManager::GetInstance()->GetBullet(muzzel, angle)
+ 														  ->SetBulletData(this->GetCurrentWeapon()->ConvTypeToStr());
 			}
 #endif
 		}
 	}
 }
- 
+
 //=====================================================================================================================================================================================================================
 			/*
 			Animation* pCurrentAnim = &m_animMap[m_currentAnim];

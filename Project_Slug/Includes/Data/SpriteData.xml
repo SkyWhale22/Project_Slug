@@ -19,6 +19,8 @@
     
     <!-- Width and height size of sprite -->
     <SpriteSize width = "32" height = "32"/>
+    <!-- Width and height to render -->
+    <RenderSize width = "120" height = "120"/>
     
     <!--
       frame   : total number of sprites of a certain animation.
@@ -28,9 +30,8 @@
       centerY : y position which destRect will be rotated 
       -->
     <Animation>
-      <Idle   frame = '1' posX = '0' posY = '0' centerX = '0' centerY = '0'/>
-      <Walk   frame = '4' posX = '0' posY = '32' centerX = '0' centerY = '0'/>
-      <Attack frame = '0' posX = '0' posY = '180' centerX = '0' centerY = '0'/>
+      <Idle   frame = '1' posX = '0' posY = '0'   centerX = '0' centerY = '0'/>
+      <Walk   frame = '4' posX = '0' posY = '32'  centerX = '0' centerY = '0'/>
       <Die    frame = '0' posX = '0' posY = '270' centerX = '0' centerY = '0'/>
     </Animation>
   </Spartan>
@@ -41,7 +42,7 @@
 
     <!-- Width and height size of sprite -->
     <SpriteFrame>
-      <AssultRifle  posX = '32' posY = '0' sizeX = '30' sizeY = '15' centerX = '29'  centerY = '22'/>
+      <AssaultRifle  posX = '32' posY = '0' sizeX = '30' sizeY = '15' centerX = '29'  centerY = '22'/>
       <Magnum       posX = '62' posY = '0' sizeX = '12' sizeY = '10' centerX = '18'  centerY = '28'/>
       <Shotgun      posX = '76' posY = '0' sizeX = '30' sizeY = '' centerX = ''  centerY = ''/>
       <PlasmaPistol posX = '' posY = '' sizeX = '' sizeY = '' centerX = ''  centerY = ''/>
@@ -54,8 +55,8 @@
     <SpritePath>Resources/Sprites/Bullets.png</SpritePath>
 
     <BulletFrame>
-      <AssultRifle  posX = ''   posY = '0'  sizeX = ''  sizeY = '' centerX = ''  centerY = ''/>
-      <Magnum       posX = '169'  posY = '32' sizeX = '7'  sizeY = '13' centerX = '0'  centerY = '0'/>
+      <AssaultRifle  posX = '169'   posY = '32'  sizeX = '7'  sizeY = '13' centerX = '0'  centerY = '0'/>
+      <Magnum       posX = '236'  posY = '57' sizeX = '7'  sizeY = '7' centerX = '0'  centerY = '0'/>
       <Shotgun      posX = ''   posY = ''  sizeX = ''  sizeY = '' centerX = ''  centerY = ''/>
       <PlasmaPistol posX = ''     posY = ''   sizeX = ''    sizeY = '' centerX = ''  centerY = ''/>
       <PlasmaRifle  posX = ''     posY = ''   sizeX = ''    sizeY = '' centerX = ''  centerY = ''/>

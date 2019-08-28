@@ -82,9 +82,12 @@ namespace Slug
 			SDL_RenderCopyEx(pRenderer, m_pTexture, &m_resourceRect, &m_destRect, m_transform.GetAngle(), &m_center, SDL_FLIP_NONE);
 		}
 
-		void Bullet::SetBulletData(const char* pName)
+		void Bullet::SetBulletData(std::string_view name)
 		{
-			XMLElement* pFrame = m_pBulletData->FirstChildElement("BulletFrame")->FirstChildElement(pName);
+			if (this == nullptr)
+				return;
+			//const char* pName = name.data();
+			XMLElement* pFrame = m_pBulletData->FirstChildElement("BulletFrame")->FirstChildElement(name.data());
 			assert(pFrame != nullptr && "pFrame was nullptr!");
 
 			m_resourceRect =
@@ -133,6 +136,7 @@ namespace Slug
 		{
 			m_pPrev = pObject;
 		}
+
 #pragma endregion IPoolable
 	}
 }

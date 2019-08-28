@@ -11,7 +11,7 @@ namespace Slug
 		{
 		//----- Member Variables -----
 		private:
-			static std::shared_ptr<Type> m_pInstance;
+			static std::unique_ptr<Type> m_pInstance;
 			static std::once_flag m_onlyOnce;
 
 		public:
@@ -43,7 +43,7 @@ namespace Slug
 }
 
 template<class Type>
-std::shared_ptr<Type> Slug::Core::Singleton<Type>::m_pInstance = nullptr;
+std::unique_ptr<Type> Slug::Core::Singleton<Type>::m_pInstance = nullptr;
 
 template<class Type>
 std::once_flag Slug::Core::Singleton<Type>::m_onlyOnce;
