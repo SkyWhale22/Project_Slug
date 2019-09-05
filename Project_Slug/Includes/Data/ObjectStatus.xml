@@ -17,9 +17,9 @@
 
   <!-- Status of each bullet -->
   <Weapon>
-    <AssaultRifle Clip = "32" Mag = "196" Speed = "10" Dmg = " "/>
-    <Magnum       Clip = "8" Mag = "32" Speed = "20" Dmg = " "/>
-    <Shotgun      Clip = "6" Mag = "18" Speed = "" Dmg = " "/>
+    <AssaultRifle Clip = "32" Mag = "196" Speed = "10" Dmg = "10"/>
+    <Magnum       Clip = "8" Mag = "32" Speed = "20" Dmg = "20"/>
+    <Shotgun      Clip = "6" Mag = "18" Speed = "5" Dmg = "30"/>
     <PlasmaPistol Clip = " " Mag = " " Speed = "" Dmg = " "/>
     <PlasmaRifle  Clip = " " Mag = " " Speed = "" Dmg = " "/>
   </Weapon>

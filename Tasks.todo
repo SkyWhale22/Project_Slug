@@ -1,5 +1,6 @@
 Project_Slug:
     ☐ Replace all const char* to whether std::string or std::string_view (C++ 17 required)
+    ☐ Change header namespaces in every cpp files.
 
     GameObjects:
         Sprites:
@@ -14,15 +15,15 @@ Project_Slug:
             
         Bullet:
             ☐ Make bullets move.
-                Calculate the unit vector from the muzzel of each gun to the mouse.
-                Bullet should move toward to where mouse pointed.
-                Each bullet moves by their own moving speed which should be defined in a xml file.
-            ☐ Let it be collected by object pool when it hits on something else,
-            or if it's alive for 5 seconds after it's been activated.
+                - Calculate the unit vector from the muzzel of each gun to the mouse.
+                - Bullet should move toward to where mouse pointed.
+                - Each bullet moves by their own moving speed which should be defined in a xml file.
+            ☐ Let it be collected by object pool when it hits on something else.
+                -- If it's alive for 5 seconds after it's been activated.
             ☐ Add enum to configure bullet's type.
-                This will be used for getting each weapon's bullet sprite from .png file.
-                and sent as a paraemter whatever characters ask bullet pool managet to activate
-                a new bullet.  
+                - This will be used for getting each weapon's bullet sprite from .png file.
+                - and sent as a paraemter whatever characters ask bullet pool managet to activate
+                - a new bullet.  
     
         Weapon:
             ✔ Make enum class that states each weapon's type @done (8/27/2019, 11:03:52 AM)
@@ -33,18 +34,24 @@ Project_Slug:
         Spartan:
             ☐ Make spartan class be derived from obervee(weapon swap system) class
             ✔ Create two slots for holding weapons. And another pointer that pointing current weapon. @done (8/29/2019, 4:57:45 AM)
-            ☐ 
+
+    Managers:
+        BulletPool:
+            ✔ @today Make a cache that holds sprite data of each bullet. @done (9/4/2019, 6:19:12 PM)
+                - Each bullet will refer one of this sprite cache when it's being called;
 
     Systems:
-        ☐ @high @today Create observer and observee(interface!) class.
-        
+        ☐ Add file description to SystemBase.hpp
+        ☐ Create observer and observee(interface!) class.
+        ☐ Consider to put every weapon related systems in one single header and cpp file. 
+
         Weapon Swap System:
-            ☐ Check observee's secondary weapon slot and if it isn't null, let observee switch its weapon.  
+            ☐ @today Check observee's secondary weapon slot and if it isn't null, let observee switch its weapon.  
 
         Weapon Reload System: 
-            ☐ @high @today Check observee class' current weapon status, which includes current bullet amount and stocks in mags.
-            ☐ @high @today Allow each character to reload its weapon, when only there are bullets left. 
+            ☐ Check observee class' current weapon status, which includes current bullet amount and stocks in mags.
+            ☐ Allow each character to reload its weapon, when only there are bullets left. 
+            ☐ @today Complish reloading logics
 
         Collision Detection:
-            ☐ Just simple rectangular collider? or  Pixel perfect ?
         

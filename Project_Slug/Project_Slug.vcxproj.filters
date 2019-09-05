@@ -141,6 +141,12 @@
     <ClCompile Include="Sources\GameObjects\Weapons\AssaultRifle.cpp">
       <Filter>Source Files\GameObjects\Weapons</Filter>
     </ClCompile>
+    <ClCompile Include="Sources\Systems\SystemBase.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Sources\Systems\WeaponCheckSystem.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Includes\GameStates\MainTitleScene.hpp">
@@ -236,11 +242,18 @@
     <ClInclude Include="Includes\GameObjects\Weapons\AssaultRifle.hpp">
       <Filter>Header Files\GameObjects\Weapons</Filter>
     </ClInclude>
+    <ClInclude Include="Includes\Systems\SystemBase.hpp">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Includes\Systems\WeaponCheckSystem.hpp">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <None Include="..\Tasks.todo" />
   </ItemGroup>
   <ItemGroup>
     <Xml Include="Includes\Data\ObjectStatus.xml" />
+    <Xml Include="Includes\Data\SpriteData.xml" />
   </ItemGroup>
 </Project>

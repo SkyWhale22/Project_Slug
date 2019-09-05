@@ -33,6 +33,8 @@ namespace Slug
 			void SetTexture(const char* pSpritePath);
 
 			SDL_Rect GetDestRect() { return m_destRect; }
+			SDL_Rect GetResourceRect() { return m_resourceRect; }
+			SDL_Point GetCenter() { return m_center; }
 			inline Utils::Transform& GetTransform() { return m_transform; }
 			
 			inline Movement GetMovement() { return m_moveDir; }

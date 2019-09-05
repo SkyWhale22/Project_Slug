@@ -30,6 +30,9 @@ namespace Slug
 			SDL_Point m_points[4];
 			WeaponType m_weaponType;
 
+			size_t m_clip;
+			size_t m_bulletsInStock;
+
 		protected:
 			SDL_Point m_muzzel[2];
 
@@ -41,7 +44,7 @@ namespace Slug
 			//Weapon(const Weapon& instance);w
 			                      
 			virtual ~Weapon() = 0 {};
-
+			
 			// Inherited via GameObject
 			virtual void Initialize() = 0;
 			virtual void Update(double deltaSeconds) = 0;
@@ -61,6 +64,9 @@ namespace Slug
 			void SetWeaponType(WeaponType type) { m_weaponType = type; }
 			
 			const std::string_view ConvTypeToStr();
+
+			constexpr size_t GetRemainingBulletNum() { return m_clip; }
+			constexpr size_t GetTotalRounds() { return m_bulletsInStock; }
 		};
 	}
 }

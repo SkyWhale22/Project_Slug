@@ -19,13 +19,15 @@ namespace Slug
 {
 	namespace Objects
 	{
+		enum class WeaponType;
+
 		class Bullet : public GameObject
 					 , public Utils::IPoolable<Bullet>
 		{
 		// --- Member Variables ---
 		private:
-			tinyxml2::XMLDocument m_doc;
-			tinyxml2::XMLElement* m_pBulletData;
+			//tinyxml2::XMLDocument m_doc;
+			//tinyxml2::XMLElement* m_pBulletData;
 
 		// --- Member Functions ---
 		public:
@@ -49,7 +51,8 @@ namespace Slug
 			virtual void SetNext(Bullet* pObject) override;
 			virtual void SetPrev(Bullet* pObject) override;
 			
-			void SetBulletData(std::string_view name);
+			//void SetBulletData(std::string_view name);
+			void SetBulletData(SDL_Rect res, SDL_Point center);
 		};
 	}
 }

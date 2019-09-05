@@ -54,18 +54,18 @@ namespace Slug
 
 		void Bullet::Initialize()
 		{
-			m_doc.LoadFile("Includes/Data/SpriteData.xml");
+			//m_doc.LoadFile("Includes/Data/SpriteData.xml");
 
-			XMLElement* pRoot = m_doc.RootElement();
-			m_pBulletData = pRoot->FirstChildElement("Bullets");
-			assert(m_pBulletData != nullptr && "m_pBulletData was nullptr");
+			//XMLElement* pRoot = m_doc.RootElement();
+			//m_pBulletData = pRoot->FirstChildElement("Bullets");
+			//assert(m_pBulletData != nullptr && "m_pBulletData was nullptr");
 
 			m_destRect.w = 16;
 			m_destRect.h = 32;
 
 			this->SetInUse(false);
 
-			SetTexture(m_pBulletData->FirstChildElement("SpritePath")->GetText());
+			//SetTexture(m_pBulletData->FirstChildElement("SpritePath")->GetText());
 		}
 
 		void Bullet::Update(double deltaSeconds)
@@ -82,26 +82,33 @@ namespace Slug
 			SDL_RenderCopyEx(pRenderer, m_pTexture, &m_resourceRect, &m_destRect, m_transform.GetAngle(), &m_center, SDL_FLIP_NONE);
 		}
 
-		void Bullet::SetBulletData(std::string_view name)
+		//void Bullet::SetBulletData(std::string_view name)
+		//{
+		//	if (this == nullptr)
+		//		return;
+		//	//const char* pName = name.data();
+		//	XMLElement* pFrame = m_pBulletData->FirstChildElement("BulletFrame")->FirstChildElement(name.data());
+		//	assert(pFrame != nullptr && "pFrame was nullptr!");
+
+		//	m_resourceRect =
+		//	{ 
+		//	(int)pFrame->IntAttribute("posX"),
+		//	(int)pFrame->IntAttribute("posY"),
+		//	(int)pFrame->IntAttribute("sizeX"),
+		//	(int)pFrame->IntAttribute("sizeY")
+		//	};
+
+		//	//m_destRect = { (int)this->GetTransform().GetPositionX(), (int)this->GetTransform().GetPositionY(), 32, 32 };
+		//	// Search center position wherer the sprite will be rendererd.
+		//	m_center = { (int)pFrame->IntAttribute("centerX"), (int)pFrame->IntAttribute("centerY") };
+		//}
+
+		void Bullet::SetBulletData(SDL_Rect res, SDL_Point center)
 		{
-			if (this == nullptr)
-				return;
-			//const char* pName = name.data();
-			XMLElement* pFrame = m_pBulletData->FirstChildElement("BulletFrame")->FirstChildElement(name.data());
-			assert(pFrame != nullptr && "pFrame was nullptr!");
-
-			m_resourceRect =
-			{ 
-			(int)pFrame->IntAttribute("posX"),
-			(int)pFrame->IntAttribute("posY"),
-			(int)pFrame->IntAttribute("sizeX"),
-			(int)pFrame->IntAttribute("sizeY")
-			};
-
-			//m_destRect = { (int)this->GetTransform().GetPositionX(), (int)this->GetTransform().GetPositionY(), 32, 32 };
-			// Search center position wherer the sprite will be rendererd.
-			m_center = { (int)pFrame->IntAttribute("centerX"), (int)pFrame->IntAttribute("centerY") };
+			this->m_center = center;
+			this->m_resourceRect = res;
 		}
+
 
 #pragma region IPoolable
 		//----------------------------------------------------------------------------------------------------------------------------------

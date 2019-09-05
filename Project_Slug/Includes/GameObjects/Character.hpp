@@ -29,8 +29,8 @@ namespace Slug
 
 		protected:
 			std::unique_ptr<Weapon> m_pWeapons[2];
-			/* ---------- Animation Related -------------*/	
 
+			/* ---------- Animation Related -------------*/	
 			struct Frame
 			{
 				SDL_Rect m_sourcePosition;

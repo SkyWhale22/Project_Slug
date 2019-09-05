@@ -37,6 +37,8 @@
     <ClCompile Include="Sources\GameStates\MainTitleScene.cpp" />
     <ClCompile Include="Sources\Managers\BulletPoolManager.cpp" />
     <ClCompile Include="Sources\Managers\MouseManager.cpp" />
+    <ClCompile Include="Sources\Systems\SystemBase.cpp" />
+    <ClCompile Include="Sources\Systems\WeaponCheckSystem.cpp" />
     <ClCompile Include="Sources\UI\UIButton.cpp" />
     <ClCompile Include="Sources\Utils\SquirrelRNG.cpp" />
     <ClCompile Include="Sources\Utils\tinyxml2.cpp" />
@@ -72,6 +74,8 @@
     <ClInclude Include="Includes\GameStates\MainTitleScene.hpp" />
     <ClInclude Include="Includes\Managers\BulletPoolManager.hpp" />
     <ClInclude Include="Includes\Managers\MouseManager.hpp" />
+    <ClInclude Include="Includes\Systems\SystemBase.hpp" />
+    <ClInclude Include="Includes\Systems\WeaponCheckSystem.hpp" />
     <ClInclude Include="Includes\UI\UIButton.hpp" />
     <ClInclude Include="Includes\Utils\ObjectPool.h" />
     <ClInclude Include="Includes\Utils\SquirrelRNG.h" />
@@ -84,6 +88,7 @@
   </ItemGroup>
   <ItemGroup>
     <Xml Include="Includes\Data\ObjectStatus.xml" />
+    <Xml Include="Includes\Data\SpriteData.xml" />
   </ItemGroup>
   <PropertyGroup Label="Globals">
     <VCProjectVersion>16.0</VCProjectVersion>

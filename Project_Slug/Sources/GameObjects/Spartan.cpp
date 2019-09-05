@@ -303,8 +303,8 @@ namespace Slug
 
 				//const std::string_view& test = m_pWeapon->ConvTypeToStr();
 				//std::string test = m_pWeapon->ConvTypeToStr();
-				Managers::BulletPoolManager::GetInstance()->GetBullet(muzzel, angle)
- 														  ->SetBulletData(this->GetCurrentWeapon()->ConvTypeToStr());
+				Managers::BulletPoolManager::GetInstance()->GetBullet(muzzel, angle, this->GetCurrentWeapon()->GetTypeInfo());
+ 														  //->SetBulletData(this->GetCurrentWeapon()->ConvTypeToStr());
 			}
 #endif
 		}
